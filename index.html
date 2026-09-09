@@ -671,37 +671,60 @@
         const { useState, useEffect } = React;
         // Domyślne fiszki
         const getDefaultFlashcards = () => [
-            {id: 1, category: ['Rozdział 1', 'Słownictwo'], word: 'polecenie', example: 'Przeczytaj uważnie to polecenie.', translation: 'завдання', notes: 'Zadanie do zrobienia'},
-            {id: 2, category: ['Rozdział 1', 'Słownictwo'], word: 'poszczególny', example: 'Musimy sprawdzić poszczególne słowa.', translation: 'окремий', notes: 'Każdy z osobna'},
-            {id: 3, category: ['Rozdział 1', 'Narodowości'], word: 'Hiszpanie', example: 'Hiszpanie mieszkają w Hiszpanii.', translation: 'іспанці', notes: 'Liczba mnoga: Hiszpanie (oni)'},
-            {id: 4, category: ['Rozdział 1', 'Narodowości'], word: 'Litwini', example: 'Litwini to mieszkańcy Litwy.', translation: 'литовці', notes: 'Liczba mnoga: Litwini (oni)'},
-            {id: 5, category: ['Rozdział 1', 'Narodowości'], word: 'Czesi', example: 'Czesi mówią po czesku.', translation: 'чехи', notes: 'Liczba mnoga: Czesi (oni)'},
-            {id: 6, category: ['Rozdział 1', 'Narodowości'], word: 'Japończycy', example: 'Japończycy mieszkają w Azji.', translation: 'японці', notes: 'Liczba mnoga: Japończycy (oni)'},
-            {id: 7, category: ['Rozdział 1', 'Słownictwo'], word: 'według', example: 'Zrób to ćwiczenie według podanego wzoru.', translation: 'згідно з / за', notes: 'Gdy robimy coś na podstawie planu, zasady lub czyjejś opinii'},
-            {id: 8, category: ['Rozdział 1', 'Zawody'], word: 'dziennikarz', example: 'Mój brat jest dziennikarzem i pisze artykuły.', translation: 'журналіст', notes: 'Osoba, która pracuje w gazecie lub telewizji'},
-            {id: 9, category: ['Rozdział 1', 'Narodowości'], word: 'Litwinki', example: 'Litwinki mieszkają na Litwie.', translation: 'литовки', notes: 'Liczba mnoga: Litwinki (kobiety)'},
-            {id: 10, category: ['Rozdział 1', 'Narodowości'], word: 'Czeszki', example: 'Moje koleżanki to Czeszki.', translation: 'чешки', notes: 'Liczba mnoga: Czeszki (kobiety)'},
-            {id: 11, category: ['Rozdział 1', 'Narodowości'], word: 'Japonki', example: 'Te Japonki udatają się do Warszawy.', translation: 'японки', notes: 'Liczba mnoga: Japonki (kobiety)'},
-            {id: 12, category: ['Rozdział 2', 'Słownictwo'], word: 'wzór', example: 'Napisz zdanie według wzoru.', translation: 'зразок', notes: 'Przykład, jak należy coś zrobić. Też, motyw np. na ubraniu'},
-            {id: 13, category: ['Rozdział 2', 'Internet'], word: 'internauta', example: 'Każdy internauta szuka informacji w sieci.', translation: 'інтернет-користувач', notes: 'Osoba, która korzysta z Internetu'},
-            {id: 14, category: ['Rozdział 2', 'Internet'], word: 'media społecznościowe', example: 'Często sprawdzam media społecznościowe jak X czy Facebook.', translation: 'соціальні мережі', notes: 'Strony internetowe takie jak Facebook czy Instagram, gdzie ludzie tworzą społeczniości'},
-            {id: 15, category: ['Rozdział 2', 'Internet'], word: 'polubienie', example: 'To zdjęcie ma dużo polubień.', translation: 'лайк', notes: 'Tak zwany „lajk” w Internecie'},
-            {id: 16, category: ['Rozdział 2', 'Słownictwo'], word: 'kontrowersyjny', example: 'To był bardzo kontrowersyjny temat.', translation: 'суперечливий', notes: 'Wywołujący dyskusje i różne opinie'},
-            {id: 17, category: ['Rozdział 2', 'Słownictwo'], word: 'zdarza się', example: 'Czasami zdarza się, że się spóźniam.', translation: 'трапляється', notes: 'Coś ma miejsce od czasu do czasu'},
-            {id: 18, category: ['Rozdział 2', 'Słownictwo'], word: 'przeciętny', example: 'To był przeciętny dzień, nic się nie stało.', translation: 'звичайний / пересічний', notes: 'Zwykły, średni, niczym się niewyróżniający'},
-            {id: 19, category: ['Rozdział 2', 'Relacje'], word: 'wróg', example: 'Nie chcę mieć żadnych wrogów.', translation: 'ворог', notes: 'Osoba, która nie jest naszym przyjacielem, życzy nam źle'},
-            {id: 20, category: ['Rozdział 2', 'Cechy charakteru'], word: 'arogancki', example: 'Ten człowiek jest bardzo arogancki.', translation: 'зверхній / арогантний', notes: 'Osoba, która myśli, że jest lepsza od innych'},
-            {id: 21, category: ['Rozdział 2', 'Cechy charakteru'], word: 'niezależny', example: 'Chcę być niezależny i sam zarabiać.', translation: 'незалежний', notes: 'Osoba, która sama o sobie decyduje'},
-            {id: 22, category: ['Rozdział 2', 'Słownictwo'], word: 'zbyt', example: 'Ten film jest zbyt długi.', translation: 'занадто', notes: 'Za bardzo, ponad miarę'},
-            {id: 23, category: ['Rozdział 2', 'Czynności'], word: 'kręcić (film)', example: 'Reżyser kręci nowy film w Warszawie.', translation: 'знімати (фільм)', notes: 'Robić nagranie wideo lub film'},
-            {id: 24, category: ['Rozdział 2', 'Wyrażenia'], word: 'moim zdaniem', example: 'Moim zdaniem ten język jest łatwy.', translation: 'на мою думку', notes: 'Używamy, gdy mówimy o swojej opinii'},
-            {id: 25, category: ['Rozdział 2', 'Słownictwo'], word: 'słynny', example: 'To jest słynny polski poeta.', translation: 'видатний / знаменитий', notes: 'Bardzo znany przez wielu ludzi'},
-            {id: 26, category: ['Rozdział 2', 'Słownictwo'], word: 'wiara', example: 'Wiara w siebie jest bardzo ważna.', translation: 'віра', notes: 'Przekonanie lub zaufanie do czegoś/kogoś'},
-            {id: 27, category: ['Rozdział 2', 'Słownictwo'], word: 'zaleta', example: 'Moją zaletą jest cierpliwość.', translation: 'перевага / плюс', notes: 'Dobra cecha lub plus jakiejś rzeczy/osoby'},
-            {id: 28, category: ['Rozdział 2', 'Cechy charakteru'], word: 'roztargniony', example: 'Jestem dziś roztargniony i ciągle coś gubię.', translation: 'розсіяний', notes: 'Osoba, która nie potrafi się skupić'},
-            {id: 29, category: ['Rozdział 2', 'Cechy charakteru'], word: 'uprzejmy', example: 'Pan Tomasz jest zawsze bardzo uprzejmy.', translation: 'ввічливий', notes: 'Mili i kulturalny dla innych ludzi'}
-        
-        ];
+            {id: 1, category: ['Lekcja 1', 'Słownictwo'], word: 'polecenie', example: 'Przeczytaj uważnie to polecenie.', translation: 'завдання', notes: 'Zadanie do zrobienia'},
+            {id: 2, category: ['Lekcja 1', 'Słownictwo'], word: 'poszczególny', example: 'Musimy sprawdzić poszczególne słowa.', translation: 'окремий', notes: 'Każdy z osobna'},
+            {id: 3, category: ['Lekcja 1', 'Narodowości'], word: 'Hiszpanie', example: 'Hiszpanie mieszkają w Hiszpanii.', translation: 'іспанці', notes: 'Liczba mnoga: Hiszpanie (oni)'},
+            {id: 4, category: ['Lekcja 1', 'Narodowości'], word: 'Litwini', example: 'Litwini to mieszkańcy Litwy.', translation: 'литовці', notes: 'Liczba mnoga: Litwini (oni)'},
+            {id: 5, category: ['Lekcja 1', 'Narodowości'], word: 'Czesi', example: 'Czesi mówią po czesku.', translation: 'чехи', notes: 'Liczba mnoga: Czesi (oni)'},
+            {id: 6, category: ['Lekcja 1', 'Narodowości'], word: 'Japończycy', example: 'Japończycy mieszkają w Azji.', translation: 'японці', notes: 'Liczba mnoga: Japończycy (oni)'},
+            {id: 7, category: ['Lekcja 1', 'Słownictwo'], word: 'według', example: 'Zrób to ćwiczenie według podanego wzoru.', translation: 'згідно з / за', notes: 'Gdy robimy coś na podstawie planu, zasady lub czyjejś opinii'},
+            {id: 8, category: ['Lekcja 1', 'Zawody'], word: 'dziennikarz', example: 'Mój brat jest dziennikarzem i pisze artykuły.', translation: 'журналіст', notes: 'Osoba, która pracuje w gazecie lub telewizji'},
+            {id: 9, category: ['Lekcja 1', 'Narodowości'], word: 'Litwinki', example: 'Litwinki mieszkają na Litwie.', translation: 'литовки', notes: 'Liczba mnoga: Litwinki (kobiety)'},
+            {id: 10, category: ['Lekcja 1', 'Narodowości'], word: 'Czeszki', example: 'Moje koleżanki to Czeszki.', translation: 'чешки', notes: 'Liczba mnoga: Czeszki (kobiety)'},
+            {id: 11, category: ['Lekcja 1', 'Narodowości'], word: 'Japonki', example: 'Te Japonki udatają się do Warszawy.', translation: 'японки', notes: 'Liczba mnoga: Japonki (kobiety)'},
+            {id: 12, category: ['Lekcja 2', 'Słownictwo'], word: 'wzór', example: 'Napisz zdanie według wzoru.', translation: 'зразок', notes: 'Przykład, jak należy coś zrobić. Też, motyw np. na ubraniu'},
+            {id: 13, category: ['Lekcja 2', 'Internet'], word: 'internauta', example: 'Każdy internauta szuka informacji w sieci.', translation: 'інтернет-користувач', notes: 'Osoba, która korzysta z Internetu'},
+            {id: 14, category: ['Lekcja 2', 'Internet'], word: 'media społecznościowe', example: 'Często sprawdzam media społecznościowe jak X czy Facebook.', translation: 'соціальні мережі', notes: 'Strony internetowe takie jak Facebook czy Instagram, gdzie ludzie tworzą społeczniości'},
+            {id: 15, category: ['Lekcja 2', 'Internet'], word: 'polubienie', example: 'To zdjęcie ma dużo polubień.', translation: 'лайк', notes: 'Tak zwany „lajk” w Internecie'},
+            {id: 16, category: ['Lekcja 2', 'Słownictwo'], word: 'kontrowersyjny', example: 'To był bardzo kontrowersyjny temat.', translation: 'суперечливий', notes: 'Wywołujący dyskusje i różne opinie'},
+            {id: 17, category: ['Lekcja 2', 'Słownictwo'], word: 'zdarza się', example: 'Czasami zdarza się, że się spóźniam.', translation: 'трапляється', notes: 'Coś ma miejsce od czasu do czasu'},
+            {id: 18, category: ['Lekcja 2', 'Słownictwo'], word: 'przeciętny', example: 'To był przeciętny dzień, nic się nie stało.', translation: 'звичайний / пересічний', notes: 'Zwykły, średni, niczym się niewyróżniający'},
+            {id: 19, category: ['Lekcja 2', 'Relacje'], word: 'wróg', example: 'Nie chcę mieć żadnych wrogów.', translation: 'ворог', notes: 'Osoba, która nie jest naszym przyjacielem, życzy nam źle'},
+            {id: 20, category: ['Lekcja 2', 'Cechy charakteru'], word: 'arogancki', example: 'Ten człowiek jest bardzo arogancki.', translation: 'зверхній / арогантний', notes: 'Osoba, która myśli, że jest lepsza od innych'},
+            {id: 21, category: ['Lekcja 2', 'Cechy charakteru'], word: 'niezależny', example: 'Chcę być niezależny i sam zarabiać.', translation: 'незалежний', notes: 'Osoba, która sama o sobie decyduje'},
+            {id: 22, category: ['Lekcja 2', 'Słownictwo'], word: 'zbyt', example: 'Ten film jest zbyt długi.', translation: 'занадто', notes: 'Za bardzo, ponad miarę'},
+            {id: 23, category: ['Lekcja 2', 'Czynności'], word: 'kręcić (film)', example: 'Reżyser kręci nowy film w Warszawie.', translation: 'знімати (фільм)', notes: 'Robić nagranie wideo lub film'},
+            {id: 24, category: ['Lekcja 2', 'Wyrażenia'], word: 'moim zdaniem', example: 'Moim zdaniem ten język jest łatwy.', translation: 'на мою думку', notes: 'Używamy, gdy mówimy o swojej opinii'},
+            {id: 25, category: ['Lekcja 2', 'Słownictwo'], word: 'słynny', example: 'To jest słynny polski poeta.', translation: 'видатний / знаменитий', notes: 'Bardzo znany przez wielu ludzi'},
+            {id: 26, category: ['Lekcja 2', 'Słownictwo'], word: 'wiara', example: 'Wiara w siebie jest bardzo ważna.', translation: 'віра', notes: 'Przekonanie lub zaufanie do czegoś/kogoś'},
+            {id: 27, category: ['Lekcja 2', 'Słownictwo'], word: 'zaleta', example: 'Moją zaletą jest cierpliwość.', translation: 'перевага / плюс', notes: 'Dobra cecha lub plus jakiejś rzeczy/osoby'},
+            {id: 28, category: ['Lekcja 2', 'Cechy charakteru'], word: 'roztargniony', example: 'Jestem dziś roztargniony i ciągle coś gubię.', translation: 'розсіяний', notes: 'Osoba, która nie potrafi się skupić'},
+            {id: 29, category: ['Lekcja 2', 'Cechy charakteru'], word: 'uprzejmy', example: 'Pan Tomasz jest zawsze bardzo uprzejmy.', translation: 'ввічливий', notes: 'Mili i kulturalny dla innych ludzi'},
+            // Lekcja 3
+            { id: 30, category: ['Lekcja 3', 'Czynności'], word: 'wywołać', example: 'Ta wiadomość wywołała wielkie emocje.', translation: 'викликати', notes: 'Spowodować powstanie jakiejś reakcji lub stanu' },
+            { id: 31, category: ['Lekcja 3', 'Wyrażenia'], word: 'bez względu', example: 'Bez względu na pogodę, idziemy na spacer.', translation: 'незважаючи na / незалежно od', notes: 'Niezależnie od czynników zewnętrznych' },
+            { id: 32, category: ['Lekcja 3', 'Cechy charakteru'], word: 'refleksyjny', example: 'To refleksyjny człowiek, dużo myśli o życiu.', translation: 'задуманий / схильний до роздумів', notes: 'Skłonny do głębszych przemyśleń i analizy' },
+            { id: 33, category: ['Lekcja 3', 'Czynności'], word: 'udowodnić', example: 'Musisz udowodnić, że masz rację.', translation: 'довести', notes: 'Przedstawić dowody na prawdziwość czegoś' },
+            { id: 34, category: ['Lekcja 3', 'Cechy charakteru'], word: 'tolerancyjny', example: 'Warto być tolerancyjnym dla innych kultur.', translation: 'толерантний', notes: 'Szanujący odmienne poglądy i zachowania' },
+            { id: 35, category: ['Lekcja 3', 'Cechy charakteru'], word: 'niezdecydowany', example: 'Jestem niezdecydowany i nie wiem, co wybrać.', translation: 'нерішучий', notes: 'Mający trudności z podejmowaniem decyzji' },
+            
+            // Lekcja 4
+            { id: 36, category: ['Lekcja 4', 'Cechy charakteru'], word: 'sympatyczna', example: 'Moja nowa sąsiadka jest bardzo sympatyczna.', translation: 'симпатична / приємна', notes: 'Mila, wzbudzająca sympatię osoba' },
+            { id: 37, category: ['Lekcja 4', 'Słownictwo'], word: 'podpucha', example: 'To pytanie to była zwykła podpucha.', translation: 'підвох / провокація', notes: 'Podstęp mający na celu wprowadzenie kogoś w błąd' },
+            { id: 38, category: ['Lekcja 4', 'Cechy charakteru'], word: 'wybitny', example: 'To wybitny naukowiec z wieloma sukcesami.', translation: 'видатний / винятковий', notes: 'Niezwykle utalentowany, wyróżniający się z tłumu' },
+            { id: 39, category: ['Lekcja 4', 'Cechy charakteru'], word: 'zarozumiały', example: 'Nie lubię go, bo jest bardzo zarozumiały.', translation: 'зарозумілий / пихатий', notes: 'Zbytnio dumny z siebie, przekonany o własnej wyższości' },
+            
+            // Lekcja 5
+            { id: 40, category: ['Lekcja 5', 'Zawody'], word: 'żołnierz', example: 'Mój dziadek był żołnierzem.', translation: 'солдат / військовий', notes: 'Osoba pełniąca służbę w wojsku' },
+            { id: 41, category: ['Lekcja 5', 'Słownictwo'], word: 'wady', example: 'Każdy człowiek ma swoje zalety i wady.', translation: 'недоліки / мінуси', notes: 'Negatywne cechy lub minusy jakiejś rzeczy/osoby' },
+            { id: 42, category: ['Lekcja 5', 'Słownictwo'], word: 'błąd', example: 'Przepraszam, popełniłem błąd.', translation: 'помилка', notes: 'Niewłaściwe postąpienie lub nieprawidłowość' },
+            { id: 43, category: ['Lekcja 5', 'Praca'], word: 'terminarz', example: 'Mam bardzo napięty terminarz na ten tydzień.', translation: 'розклад / графік / календар', notes: 'Plan lub kalendarz z zapisanymi spotkaniami' },
+            { id: 44, category: ['Lekcja 5', 'Praca'], word: 'pensja', example: 'Dostałem dzisiaj miesięczną pensję.', translation: 'зарплата', notes: 'Wynagrodzenie wypłacane za pracę' },
+            { id: 45, category: ['Lekcja 5', 'Czynności'], word: 'negocjować', example: 'Musimy negocjować warunki umowy.', translation: 'вести переговори / домовлятися', notes: 'Prowadzić rozmowy w celu osiągnięcia porozumienia' },
+            { id: 46, category: ['Lekcja 5', 'Praca'], word: 'na własny rachunek', example: 'Odszedł z firmy i pracuje na własny rachunek.', translation: 'на себе / самостійно', notes: 'Prowadzenie własnej działalności gospodarczej' },
+            { id: 47, category: ['Lekcja 5', 'Praca'], word: 'etat', example: 'Chciałbym znaleźć pracę na pełen etat.', translation: 'ставка / штатна посада', notes: 'Stała praca określona umową' },
+            { id: 48, category: ['Lekcja 5', 'Słownictwo'], word: 'pasja', example: 'Moją wielką pasją jest podróżowanie.', translation: 'пристрасть / захоплення', notes: 'Rzecz, którą robi się z ogromnym entuzjazmem' }
+      ];
 
 
         function FlashcardApp() {
@@ -742,8 +765,8 @@
             )].filter(Boolean);
 
             // Separate chapters from other categories
-            const chapters = allCategories.filter(cat => cat.toLowerCase().includes('rozdział')).sort();
-            const otherCategories = allCategories.filter(cat => !cat.toLowerCase().includes('rozdział')).sort();
+            const chapters = allCategories.filter(cat => cat.toLowerCase().includes('Lekcja')).sort();
+            const otherCategories = allCategories.filter(cat => !cat.toLowerCase().includes('Lekcja')).sort();
 
             const filteredCards = (() => {
                 let filtered = flashcards;
@@ -990,7 +1013,7 @@
                         <>
                             {chapters.length > 0 && (
                                 <div className="card">
-                                    <h2>📖 Filtry rozdziałów</h2>
+                                    <h2>📖 Filtry Lekcjaów</h2>
                                     <div className="category-filter">
                                         {chapters.map(chapter => (
                                             <div
@@ -1480,15 +1503,15 @@
             const wb = XLSX.utils.book_new();
             
             const wsData = [
-                ['ID', 'Rozdział', 'Kategoria', 'Słowo (Polski)', 'Przykład (Polski)', 'Tłumaczenie (Українська)', 'Notatki (Українська)']
+                ['ID', 'Lekcja', 'Kategoria', 'Słowo (Polski)', 'Przykład (Polski)', 'Tłumaczenie (Українська)', 'Notatki (Українська)']
             ];
             
             if (currentCards.length > 0) {
                 currentCards.forEach(card => {
                     const categories = Array.isArray(card.category) ? card.category : [card.category];
                     // Separate chapter from other categories
-                    const chapter = categories.find(cat => cat && cat.toLowerCase().includes('rozdział')) || '';
-                    const otherCategories = categories.filter(cat => cat && !cat.toLowerCase().includes('rozdział')).join(';');
+                    const chapter = categories.find(cat => cat && cat.toLowerCase().includes('Lekcja')) || '';
+                    const otherCategories = categories.filter(cat => cat && !cat.toLowerCase().includes('Lekcja')).join(';');
                     
                     wsData.push([
                         card.id,
@@ -1501,313 +1524,313 @@
                     ]);
                 });
             } else {
-                // Rozdział pierwszy i zerowy - Błędy
-                wsData.push([1, 'Rozdział pierwszy i zerowy', 'Błędy', 'jesteś w błędzie', 'Myślę, że jesteś w błędzie - to nie jest dobra metoda.', 'ти помиляєшся', 'Wyrażenie używane przy korekcie błędnego stwierdzenia']);
-                wsData.push([2, 'Rozdział pierwszy i zerowy', 'Błędy', 'przyznać się do błędu', 'Trzeba przyznać się do błędu i go poprawić.', 'визнати помилку', 'Ważna umiejętność przyznawania się do błędów']);
-                wsData.push([3, 'Rozdział pierwszy i zerowy', 'Błędy', 'wybacz mi mój błąd', 'Wybacz mi mój błąd - następnym razem będę uważniejszy.', 'вибач мені мою помилку', 'Przeprosiny za popełniony błąd']);
-                wsData.push([4, 'Rozdział pierwszy i zerowy', 'Błędy', 'uczymy się na błędach', 'Nie martw się - uczymy się na błędach.', 'ми вчимося на помилках', 'Pozytywne podejście do błędów']);
-                wsData.push([5, 'Rozdział pierwszy i zerowy', 'Błędy', 'nie wprowadzaj mnie w błąd', 'Proszę, nie wprowadzaj mnie w błąd - powiedz prawdę.', 'не введи мене в оману', 'Prośba o uczciwość']);
-                wsData.push([6, 'Rozdział pierwszy i zerowy', 'Błędy', 'wyprowadź mnie z błędu', 'Jeśli się mylę, wyprowadź mnie z błędu.', 'виправ мене', 'Prośba o korektę']);
+                // Lekcja pierwszy i zerowy - Błędy
+                wsData.push([1, 'Lekcja pierwszy i zerowy', 'Błędy', 'jesteś w błędzie', 'Myślę, że jesteś w błędzie - to nie jest dobra metoda.', 'ти помиляєшся', 'Wyrażenie używane przy korekcie błędnego stwierdzenia']);
+                wsData.push([2, 'Lekcja pierwszy i zerowy', 'Błędy', 'przyznać się do błędu', 'Trzeba przyznać się do błędu i go poprawić.', 'визнати помилку', 'Ważna umiejętność przyznawania się do błędów']);
+                wsData.push([3, 'Lekcja pierwszy i zerowy', 'Błędy', 'wybacz mi mój błąd', 'Wybacz mi mój błąd - następnym razem będę uważniejszy.', 'вибач мені мою помилку', 'Przeprosiny za popełniony błąd']);
+                wsData.push([4, 'Lekcja pierwszy i zerowy', 'Błędy', 'uczymy się na błędach', 'Nie martw się - uczymy się na błędach.', 'ми вчимося на помилках', 'Pozytywne podejście do błędów']);
+                wsData.push([5, 'Lekcja pierwszy i zerowy', 'Błędy', 'nie wprowadzaj mnie w błąd', 'Proszę, nie wprowadzaj mnie w błąd - powiedz prawdę.', 'не введи мене в оману', 'Prośba o uczciwość']);
+                wsData.push([6, 'Lekcja pierwszy i zerowy', 'Błędy', 'wyprowadź mnie z błędu', 'Jeśli się mylę, wyprowadź mnie z błędu.', 'виправ мене', 'Prośba o korektę']);
                 
                 // Metody nauki
-                wsData.push([7, 'Rozdział pierwszy i zerowy', 'Metody nauki', 'indywidualnie', 'Wolę uczyć się indywidualnie.', 'індивідуально', 'Nauka w pojedynkę']);
-                wsData.push([8, 'Rozdział pierwszy i zerowy', 'Metody nauki', 'w grupie', 'Lubimy pracować w grupie.', 'в групі', 'Nauka grupowa']);
-                wsData.push([9, 'Rozdział pierwszy i zerowy', 'Metody nauki', 'poprzez bezpośredni kontakt', 'Najlepiej uczę się poprzez bezpośredni kontakt z nauczycielem.', 'через безпосередній контакт', 'Face-to-face learning']);
-                wsData.push([10, 'Rozdział pierwszy i zerowy', 'Metody nauki', 'skuteczny', 'To jest bardzo skuteczny sposób nauki.', 'ефективний', 'Przynoszący dobre rezultaty']);
-                wsData.push([11, 'Rozdział pierwszy i zerowy', 'Metody nauki', 'intensywny', 'Intensywny kurs trwa dwa tygodnie.', 'інтенсивний', 'Nauka w szybkim tempie']);
-                wsData.push([12, 'Rozdział pierwszy i zerowy', 'Metody nauki', 'z partnerem', 'Ćwiczę konwersacje z partnerem.', 'з партнером', 'Nauka w parze']);
-                wsData.push([13, 'Rozdział pierwszy i zerowy', 'Metody nauki', 'biegle', 'Ona mówi biegle po polsku.', 'вільно, бездоганно', 'Płynnie, bez problemów']);
-                wsData.push([14, 'Rozdział pierwszy i zerowy', 'Metody nauki', 'nietypowe', 'Używam nietypowych metod zapamiętywania.', 'нетипові, незвичайні', 'Oryginalne, niestandardowe']);
-                wsData.push([15, 'Rozdział pierwszy i zerowy', 'Metody nauki', 'efektywna metoda nauki', 'Fiszki to bardzo efektywna metoda nauki słówek.', 'ефективний метод навчання', 'Metoda przynosząca dobre wyniki']);
-                wsData.push([16, 'Rozdział pierwszy i zerowy', 'Metody nauki', 'powtarzać na głos', 'Należy powtarzać na głos nowe słowa.', 'повторювати вголос', 'Głośne mówienie podczas nauki']);
+                wsData.push([7, 'Lekcja pierwszy i zerowy', 'Metody nauki', 'indywidualnie', 'Wolę uczyć się indywidualnie.', 'індивідуально', 'Nauka w pojedynkę']);
+                wsData.push([8, 'Lekcja pierwszy i zerowy', 'Metody nauki', 'w grupie', 'Lubimy pracować w grupie.', 'в групі', 'Nauka grupowa']);
+                wsData.push([9, 'Lekcja pierwszy i zerowy', 'Metody nauki', 'poprzez bezpośredni kontakt', 'Najlepiej uczę się poprzez bezpośredni kontakt z nauczycielem.', 'через безпосередній контакт', 'Face-to-face learning']);
+                wsData.push([10, 'Lekcja pierwszy i zerowy', 'Metody nauki', 'skuteczny', 'To jest bardzo skuteczny sposób nauki.', 'ефективний', 'Przynoszący dobre rezultaty']);
+                wsData.push([11, 'Lekcja pierwszy i zerowy', 'Metody nauki', 'intensywny', 'Intensywny kurs trwa dwa tygodnie.', 'інтенсивний', 'Nauka w szybkim tempie']);
+                wsData.push([12, 'Lekcja pierwszy i zerowy', 'Metody nauki', 'z partnerem', 'Ćwiczę konwersacje z partnerem.', 'з партнером', 'Nauka w parze']);
+                wsData.push([13, 'Lekcja pierwszy i zerowy', 'Metody nauki', 'biegle', 'Ona mówi biegle po polsku.', 'вільно, бездоганно', 'Płynnie, bez problemów']);
+                wsData.push([14, 'Lekcja pierwszy i zerowy', 'Metody nauki', 'nietypowe', 'Używam nietypowych metod zapamiętywania.', 'нетипові, незвичайні', 'Oryginalne, niestandardowe']);
+                wsData.push([15, 'Lekcja pierwszy i zerowy', 'Metody nauki', 'efektywna metoda nauki', 'Fiszki to bardzo efektywna metoda nauki słówek.', 'ефективний метод навчання', 'Metoda przynosząca dobre wyniki']);
+                wsData.push([16, 'Lekcja pierwszy i zerowy', 'Metody nauki', 'powtarzać na głos', 'Należy powtarzać na głos nowe słowa.', 'повторювати вголос', 'Głośne mówienie podczas nauki']);
                 
                 // Typy uczniów
-                wsData.push([17, 'Rozdział pierwszy i zerowy', 'Typy uczniów', 'wzrokowiec', 'Jestem wzrokowcem - lubię uczyć się z obrazków.', 'візуал', 'Osoba ucząca się wzrokowo']);
-                wsData.push([18, 'Rozdział pierwszy i zerowy', 'Typy uczniów', 'słuchowiec', 'Jako słuchowiec wolę słuchać podcastów.', 'аудіал', 'Osoba ucząca się przez słuchanie']);
+                wsData.push([17, 'Lekcja pierwszy i zerowy', 'Typy uczniów', 'wzrokowiec', 'Jestem wzrokowcem - lubię uczyć się z obrazków.', 'візуал', 'Osoba ucząca się wzrokowo']);
+                wsData.push([18, 'Lekcja pierwszy i zerowy', 'Typy uczniów', 'słuchowiec', 'Jako słuchowiec wolę słuchać podcastów.', 'аудіал', 'Osoba ucząca się przez słuchanie']);
                 
                 // Relaks i stres
-                wsData.push([19, 'Rozdział pierwszy i zerowy', 'Relaks i stres', 'ćwiczenia relaksacyjne', 'Codziennie robię ćwiczenia relaksacyjne.', 'релаксаційні вправи', 'Ćwiczenia na odprężenie']);
-                wsData.push([20, 'Rozdział pierwszy i zerowy', 'Relaks i stres', 'aromatyczna kąpiel', 'Aromatyczna kąpiel pomaga mi się zrelaksować.', 'ароматична ванна', 'Kąpiel z olejkami zapachowymi']);
-                wsData.push([21, 'Rozdział pierwszy i zerowy', 'Relaks i stres', 'głębokie oddychanie', 'Głębokie oddychanie uspokaja nerwy.', 'глибоке дихання', 'Technika relaksacyjna']);
-                wsData.push([22, 'Rozdział pierwszy i zerowy', 'Relaks i stres', 'jestem zdenerwowany', 'Jestem zdenerwowany przed egzaminem.', 'я знервований/знервована', 'Wyrażenie stresu lub niepokoju']);
-                wsData.push([23, 'Rozdział pierwszy i zerowy', 'Relaks i stres', 'naturalne metody', 'Preferuję naturalne metody radzenia sobie ze stresem.', 'природні методи', 'Metody bez używania leków']);
-                wsData.push([24, 'Rozdział pierwszy i zerowy', 'Relaks i stres', 'masaż karku', 'Masaż karku pomaga na napięcie.', 'масаж шиї', 'Rozluźnienie mięśni szyi']);
-                wsData.push([25, 'Rozdział pierwszy i zerowy', 'Relaks i stres', 'być optymistą', 'Staram się być optymistą w trudnych sytuacjach.', 'бути оптимістом', 'Pozytywne nastawienie do życia']);
-                wsData.push([26, 'Rozdział pierwszy i zerowy', 'Relaks i stres', 'wygrać walkę ze stresem', 'Można wygrać walkę ze stresem dzięki odpowiednim technikom.', 'перемогти стрес', 'Pokonać stres']);
+                wsData.push([19, 'Lekcja pierwszy i zerowy', 'Relaks i stres', 'ćwiczenia relaksacyjne', 'Codziennie robię ćwiczenia relaksacyjne.', 'релаксаційні вправи', 'Ćwiczenia na odprężenie']);
+                wsData.push([20, 'Lekcja pierwszy i zerowy', 'Relaks i stres', 'aromatyczna kąpiel', 'Aromatyczna kąpiel pomaga mi się zrelaksować.', 'ароматична ванна', 'Kąpiel z olejkami zapachowymi']);
+                wsData.push([21, 'Lekcja pierwszy i zerowy', 'Relaks i stres', 'głębokie oddychanie', 'Głębokie oddychanie uspokaja nerwy.', 'глибоке дихання', 'Technika relaksacyjna']);
+                wsData.push([22, 'Lekcja pierwszy i zerowy', 'Relaks i stres', 'jestem zdenerwowany', 'Jestem zdenerwowany przed egzaminem.', 'я знервований/знервована', 'Wyrażenie stresu lub niepokoju']);
+                wsData.push([23, 'Lekcja pierwszy i zerowy', 'Relaks i stres', 'naturalne metody', 'Preferuję naturalne metody radzenia sobie ze stresem.', 'природні методи', 'Metody bez używania leków']);
+                wsData.push([24, 'Lekcja pierwszy i zerowy', 'Relaks i stres', 'masaż karku', 'Masaż karku pomaga na napięcie.', 'масаж шиї', 'Rozluźnienie mięśni szyi']);
+                wsData.push([25, 'Lekcja pierwszy i zerowy', 'Relaks i stres', 'być optymistą', 'Staram się być optymistą w trudnych sytuacjach.', 'бути оптимістом', 'Pozytywne nastawienie do życia']);
+                wsData.push([26, 'Lekcja pierwszy i zerowy', 'Relaks i stres', 'wygrać walkę ze stresem', 'Można wygrać walkę ze stresem dzięki odpowiednim technikom.', 'перемогти стрес', 'Pokonać stres']);
                 
                 // Koncentracja
-                wsData.push([27, 'Rozdział pierwszy i zerowy', 'Koncentracja', 'koncentracja', 'Do nauki potrzebna jest dobra koncentracja.', 'концентрація', 'Skupienie uwagi']);
-                wsData.push([28, 'Rozdział pierwszy i zerowy', 'Koncentracja', 'skoncentruj się', 'Skoncentruj się na zadaniu!', 'зосередься', 'Rozkaz/prośba o skupienie uwagi']);
-                wsData.push([29, 'Rozdział pierwszy i zerowy', 'Koncentracja', 'świeże powietrze', 'Świeże powietrze pomaga mi myśleć jasno.', 'свіже повітря', 'Powietrze na zewnątrz, wietrzenie']);
-                wsData.push([30, 'Rozdział pierwszy i zerowy', 'Koncentracja', 'męczyć się', 'Zaczynam się męczyć - potrzebuję przerwy.', 'втомлюватися', 'Odczuwać zmęczenie']);
+                wsData.push([27, 'Lekcja pierwszy i zerowy', 'Koncentracja', 'koncentracja', 'Do nauki potrzebna jest dobra koncentracja.', 'концентрація', 'Skupienie uwagi']);
+                wsData.push([28, 'Lekcja pierwszy i zerowy', 'Koncentracja', 'skoncentruj się', 'Skoncentruj się na zadaniu!', 'зосередься', 'Rozkaz/prośba o skupienie uwagi']);
+                wsData.push([29, 'Lekcja pierwszy i zerowy', 'Koncentracja', 'świeże powietrze', 'Świeże powietrze pomaga mi myśleć jasno.', 'свіже повітря', 'Powietrze na zewnątrz, wietrzenie']);
+                wsData.push([30, 'Lekcja pierwszy i zerowy', 'Koncentracja', 'męczyć się', 'Zaczynam się męczyć - potrzebuję przerwy.', 'втомлюватися', 'Odczuwać zmęczenie']);
                 
                 // Nauka i egzaminy
-                wsData.push([31, 'Rozdział pierwszy i zerowy', 'Nauka i egzaminy', 'porównywać się z innymi', 'Nie powinnaś porównywać się z innymi.', 'порівнювати себе з іншими', 'Zestawiać swoje osiągnięcia z cudzymi']);
-                wsData.push([32, 'Rozdział pierwszy i zerowy', 'Nauka i egzaminy', 'zrobić sobie przerwę', 'Musisz zrobić sobie przerwę i odpocząć.', 'зробити собі перерву', 'Chwila odpoczynku podczas pracy']);
-                wsData.push([33, 'Rozdział pierwszy i zerowy', 'Nauka i egzaminy', 'iść spać', 'Jest już późno, muszę iść spać.', 'йти спати', 'Kłaść się do łóżka']);
-                wsData.push([34, 'Rozdział pierwszy i zerowy', 'Nauka i egzaminy', 'zdać egzamin', 'Gratuluję! Udało ci się zdać egzamin.', 'скласти іспит', 'Pomyślnie ukończyć test']);
-                wsData.push([35, 'Rozdział pierwszy i zerowy', 'Nauka i egzaminy', 'czytałam coś ciekawego', 'Czytałam coś ciekawego o tej metodzie.', 'я читала щось цікаве', 'Natknąć się na interesującą informację']);
+                wsData.push([31, 'Lekcja pierwszy i zerowy', 'Nauka i egzaminy', 'porównywać się z innymi', 'Nie powinnaś porównywać się z innymi.', 'порівнювати себе з іншими', 'Zestawiać swoje osiągnięcia z cudzymi']);
+                wsData.push([32, 'Lekcja pierwszy i zerowy', 'Nauka i egzaminy', 'zrobić sobie przerwę', 'Musisz zrobić sobie przerwę i odpocząć.', 'зробити собі перерву', 'Chwila odpoczynku podczas pracy']);
+                wsData.push([33, 'Lekcja pierwszy i zerowy', 'Nauka i egzaminy', 'iść spać', 'Jest już późno, muszę iść spać.', 'йти спати', 'Kłaść się do łóżka']);
+                wsData.push([34, 'Lekcja pierwszy i zerowy', 'Nauka i egzaminy', 'zdać egzamin', 'Gratuluję! Udało ci się zdać egzamin.', 'скласти іспит', 'Pomyślnie ukończyć test']);
+                wsData.push([35, 'Lekcja pierwszy i zerowy', 'Nauka i egzaminy', 'czytałam coś ciekawego', 'Czytałam coś ciekawego o tej metodzie.', 'я читала щось цікаве', 'Natknąć się na interesującą informację']);
                 
                 // Zwroty konwersacyjne
-                wsData.push([36, 'Rozdział pierwszy i zerowy', 'Zwroty konwersacyjne', 'wyobraź sobie', 'Wyobraź sobie, że przyszedł bez zaproszenia!', 'уяви собі', 'Wykrzyknienie przy opowiadaniu o czymś zaskakującym lub oburzającym']);
-                wsData.push([37, 'Rozdział pierwszy i zerowy', 'Zwroty konwersacyjne', 'przepraszam, że przerywam', 'Przepraszam, że przerywam, ale mam pytanie.', 'вибачте, що перебиваю', 'Grzeczne wtrącenie się do rozmowy']);
-                wsData.push([38, 'Rozdział pierwszy i zerowy', 'Zwroty konwersacyjne', 'poważnie?', 'Naprawdę to zrobiłeś? Poważnie?', 'серйозно?', 'Wyrażenie zdziwienia lub niedowierzania']);
-                wsData.push([39, 'Rozdział pierwszy i zerowy', 'Zwroty konwersacyjne', 'chodzi o to, że/żeby', 'Chodzi o to, że nie mam czasu dzisiaj.', 'справа в тому, що / йдеться про те, щоб', 'Wyjaśnienie istoty problemu']);
-                wsData.push([40, 'Rozdział pierwszy i zerowy', 'Zwroty konwersacyjne', 'przepraszam, ale trochę się spieszę', 'Przepraszam, ale trochę się spieszę - pogadamy później.', 'вибачте, але я трохи поспішаю', 'Grzeczne zakończenie rozmowy']);
-                wsData.push([41, 'Rozdział pierwszy i zerowy', 'Zwroty konwersacyjne', 'niestety musimy już iść', 'Niestety musimy już iść - dziękujemy za miły wieczór.', 'на жаль, нам вже треба йти', 'Pożegnanie, gdy trzeba wychodzić']);
-                wsData.push([42, 'Rozdział pierwszy i zerowy', 'Zwroty konwersacyjne', 'no i co dalej?', 'Opowiadałeś o swoim wyjeździe... no i co dalej?', 'ну і що далі?', 'Zachęta do kontynuowania opowieści']);
-                wsData.push([43, 'Rozdział pierwszy i zerowy', 'Zwroty konwersacyjne', 'czytałam gdzieś', 'Czytałam gdzieś, że ta metoda jest skuteczna.', 'я читала десь', 'Powołanie się na nieznaną dokładnie źródło']);
+                wsData.push([36, 'Lekcja pierwszy i zerowy', 'Zwroty konwersacyjne', 'wyobraź sobie', 'Wyobraź sobie, że przyszedł bez zaproszenia!', 'уяви собі', 'Wykrzyknienie przy opowiadaniu o czymś zaskakującym lub oburzającym']);
+                wsData.push([37, 'Lekcja pierwszy i zerowy', 'Zwroty konwersacyjne', 'przepraszam, że przerywam', 'Przepraszam, że przerywam, ale mam pytanie.', 'вибачте, що перебиваю', 'Grzeczne wtrącenie się do rozmowy']);
+                wsData.push([38, 'Lekcja pierwszy i zerowy', 'Zwroty konwersacyjne', 'poważnie?', 'Naprawdę to zrobiłeś? Poważnie?', 'серйозно?', 'Wyrażenie zdziwienia lub niedowierzania']);
+                wsData.push([39, 'Lekcja pierwszy i zerowy', 'Zwroty konwersacyjne', 'chodzi o to, że/żeby', 'Chodzi o to, że nie mam czasu dzisiaj.', 'справа в тому, що / йдеться про те, щоб', 'Wyjaśnienie istoty problemu']);
+                wsData.push([40, 'Lekcja pierwszy i zerowy', 'Zwroty konwersacyjne', 'przepraszam, ale trochę się spieszę', 'Przepraszam, ale trochę się spieszę - pogadamy później.', 'вибачте, але я трохи поспішаю', 'Grzeczne zakończenie rozmowy']);
+                wsData.push([41, 'Lekcja pierwszy i zerowy', 'Zwroty konwersacyjne', 'niestety musimy już iść', 'Niestety musimy już iść - dziękujemy za miły wieczór.', 'на жаль, нам вже треба йти', 'Pożegnanie, gdy trzeba wychodzić']);
+                wsData.push([42, 'Lekcja pierwszy i zerowy', 'Zwroty konwersacyjne', 'no i co dalej?', 'Opowiadałeś o swoim wyjeździe... no i co dalej?', 'ну і що далі?', 'Zachęta do kontynuowania opowieści']);
+                wsData.push([43, 'Lekcja pierwszy i zerowy', 'Zwroty konwersacyjne', 'czytałam gdzieś', 'Czytałam gdzieś, że ta metoda jest skuteczna.', 'я читала десь', 'Powołanie się na nieznaną dokładnie źródło']);
                 
                 // Wyrażenia wprowadzające
-                wsData.push([44, 'Rozdział pierwszy i zerowy', 'Zwroty konwersacyjne', 'a propos', 'A propos, czy widziałeś ten film?', 'до речі', 'Przejście do nowego tematu']);
-                wsData.push([45, 'Rozdział pierwszy i zerowy', 'Zwroty konwersacyjne', 'tak mi się wydaje', 'Tak mi się wydaje, ale nie jestem pewna.', 'мені так здається', 'Wyrażenie niepewności opinii']);
-                wsData.push([46, 'Rozdział pierwszy i zerowy', 'Zwroty konwersacyjne', 'nie mam pojęcia', 'Nie mam pojęcia, jak to zrobić.', 'не маю поняття / не знаю', 'Całkowity brak wiedzy']);
-                wsData.push([47, 'Rozdział pierwszy i zerowy', 'Zwroty konwersacyjne', 'problem polega na tym, że', 'Problem polega na tym, że nie ma miejsc.', 'проблема полягає в тому, що', 'Wskazanie istoty problemu']);
+                wsData.push([44, 'Lekcja pierwszy i zerowy', 'Zwroty konwersacyjne', 'a propos', 'A propos, czy widziałeś ten film?', 'до речі', 'Przejście do nowego tematu']);
+                wsData.push([45, 'Lekcja pierwszy i zerowy', 'Zwroty konwersacyjne', 'tak mi się wydaje', 'Tak mi się wydaje, ale nie jestem pewna.', 'мені так здається', 'Wyrażenie niepewności opinii']);
+                wsData.push([46, 'Lekcja pierwszy i zerowy', 'Zwroty konwersacyjne', 'nie mam pojęcia', 'Nie mam pojęcia, jak to zrobić.', 'не маю поняття / не знаю', 'Całkowity brak wiedzy']);
+                wsData.push([47, 'Lekcja pierwszy i zerowy', 'Zwroty konwersacyjne', 'problem polega na tym, że', 'Problem polega na tym, że nie ma miejsc.', 'проблема полягає в тому, що', 'Wskazanie istoty problemu']);
                 
                 // Wielojęzyczność i edukacja
-                wsData.push([48, 'Rozdział pierwszy i zerowy', 'Wielojęzyczność i edukacja', 'wielojęzyczność', 'Wielojęzyczność to duża zaleta na rynku pracy.', 'багатомовність', 'Znajomość wielu języków']);
-                wsData.push([49, 'Rozdział pierwszy i zerowy', 'Wielojęzyczność i edukacja', 'w ramach (+ dopełniacz)', 'W ramach kursu mamy dodatkowe zajęcia.', 'в рамках (+ родовий)', 'W zakresie, w obrębie']);
-                wsData.push([50, 'Rozdział pierwszy i zerowy', 'Wielojęzyczność i edukacja', 'rozwijać kreatywność', 'Te ćwiczenia rozwijają kreatywność.', 'розвивати креативність', 'Pobudzać twórcze myślenie']);
-                wsData.push([51, 'Rozdział pierwszy i zerowy', 'Wielojęzyczność i edukacja', 'ludzie o różnych korzeniach', 'W naszej klasie są ludzie o różnych korzeniach.', 'люди з різним корінням', 'Osoby z różnych kultur']);
-                wsData.push([52, 'Rozdział pierwszy i zerowy', 'Wielojęzyczność i edukacja', 'atmosfera jest fantastyczna', 'Na zajęciach atmosfera jest fantastyczna.', 'атмосфера фантастична', 'Bardzo dobry nastrój, klimat']);
-                wsData.push([53, 'Rozdział pierwszy i zerowy', 'Wielojęzyczność i edukacja', 'lektorzy są wymagający', 'Lektorzy są wymagający, ale sprawiedliwi.', 'викладачі вимогливі', 'Nauczyciele mają wysokie standardy']);
-                wsData.push([54, 'Rozdział pierwszy i zerowy', 'Wielojęzyczność i edukacja', 'nic nie przychodzi mi do głowy', 'Nic nie przychodzi mi do głowy - nie wiem, co powiedzieć.', 'нічого не спадає на думку', 'Brak pomysłów']);
+                wsData.push([48, 'Lekcja pierwszy i zerowy', 'Wielojęzyczność i edukacja', 'wielojęzyczność', 'Wielojęzyczność to duża zaleta na rynku pracy.', 'багатомовність', 'Znajomość wielu języków']);
+                wsData.push([49, 'Lekcja pierwszy i zerowy', 'Wielojęzyczność i edukacja', 'w ramach (+ dopełniacz)', 'W ramach kursu mamy dodatkowe zajęcia.', 'в рамках (+ родовий)', 'W zakresie, w obrębie']);
+                wsData.push([50, 'Lekcja pierwszy i zerowy', 'Wielojęzyczność i edukacja', 'rozwijać kreatywność', 'Te ćwiczenia rozwijają kreatywność.', 'розвивати креативність', 'Pobudzać twórcze myślenie']);
+                wsData.push([51, 'Lekcja pierwszy i zerowy', 'Wielojęzyczność i edukacja', 'ludzie o różnych korzeniach', 'W naszej klasie są ludzie o różnych korzeniach.', 'люди з різним корінням', 'Osoby z różnych kultur']);
+                wsData.push([52, 'Lekcja pierwszy i zerowy', 'Wielojęzyczność i edukacja', 'atmosfera jest fantastyczna', 'Na zajęciach atmosfera jest fantastyczna.', 'атмосфера фантастична', 'Bardzo dobry nastrój, klimat']);
+                wsData.push([53, 'Lekcja pierwszy i zerowy', 'Wielojęzyczność i edukacja', 'lektorzy są wymagający', 'Lektorzy są wymagający, ale sprawiedliwi.', 'викладачі вимогливі', 'Nauczyciele mają wysokie standardy']);
+                wsData.push([54, 'Lekcja pierwszy i zerowy', 'Wielojęzyczność i edukacja', 'nic nie przychodzi mi do głowy', 'Nic nie przychodzi mi do głowy - nie wiem, co powiedzieć.', 'нічого не спадає на думку', 'Brak pomysłów']);
                 
                 // Czasowniki z biernikiem
-                wsData.push([55, 'Rozdział pierwszy i zerowy', 'Czasowniki z biernikiem', 'pytać o (+ biernik)', 'Pytam o szczegóły kursu.', 'питати про (+ знахідний)', 'Pytać o coś']);
-                wsData.push([56, 'Rozdział pierwszy i zerowy', 'Czasowniki z biernikiem', 'prosić o (+ biernik)', 'Proszę o pomoc i uwagę.', 'просити про (+ знахідний)', 'Prosić o coś']);
-                wsData.push([57, 'Rozdział pierwszy i zerowy', 'Czasowniki z biernikiem', 'chodzi o (+ biernik)', 'Chodzi o niego, a nie o za wysoką cenę.', 'йдеться про (+ знахідний)', 'Dotyczyć kogoś/czegoś']);
-                wsData.push([58, 'Rozdział pierwszy i zerowy', 'Czasowniki z biernikiem', 'jechać na (+ biernik)', 'Jadę na wakacje do Grecji.', 'їхати на (+ знахідний)', 'Jechać dokądś']);
-                wsData.push([59, 'Rozdział pierwszy i zerowy', 'Czasowniki z biernikiem', 'iść na (+ biernik)', 'Idziemy dziś wieczorem na film.', 'йти на (+ знахідний)', 'Iść na wydarzenie']);
-                wsData.push([60, 'Rozdział pierwszy i zerowy', 'Czasowniki z biernikiem', 'grać w (+ biernik)', 'Dzieci grają w piłkę na boisku.', 'грати в (+ знахідний)', 'Grać w grę/sport']);
-                wsData.push([61, 'Rozdział pierwszy i zerowy', 'Czasowniki z biernikiem', 'nosić (+ biernik)', 'On zawsze nosi elegancki garnitur.', 'носити (+ знахідний)', 'Mieć ubranie na sobie']);
+                wsData.push([55, 'Lekcja pierwszy i zerowy', 'Czasowniki z biernikiem', 'pytać o (+ biernik)', 'Pytam o szczegóły kursu.', 'питати про (+ знахідний)', 'Pytać o coś']);
+                wsData.push([56, 'Lekcja pierwszy i zerowy', 'Czasowniki z biernikiem', 'prosić o (+ biernik)', 'Proszę o pomoc i uwagę.', 'просити про (+ знахідний)', 'Prosić o coś']);
+                wsData.push([57, 'Lekcja pierwszy i zerowy', 'Czasowniki z biernikiem', 'chodzi o (+ biernik)', 'Chodzi o niego, a nie o za wysoką cenę.', 'йдеться про (+ знахідний)', 'Dotyczyć kogoś/czegoś']);
+                wsData.push([58, 'Lekcja pierwszy i zerowy', 'Czasowniki z biernikiem', 'jechać na (+ biernik)', 'Jadę na wakacje do Grecji.', 'їхати на (+ знахідний)', 'Jechać dokądś']);
+                wsData.push([59, 'Lekcja pierwszy i zerowy', 'Czasowniki z biernikiem', 'iść na (+ biernik)', 'Idziemy dziś wieczorem na film.', 'йти на (+ знахідний)', 'Iść na wydarzenie']);
+                wsData.push([60, 'Lekcja pierwszy i zerowy', 'Czasowniki z biernikiem', 'grać w (+ biernik)', 'Dzieci grają w piłkę na boisku.', 'грати в (+ знахідний)', 'Grać w grę/sport']);
+                wsData.push([61, 'Lekcja pierwszy i zerowy', 'Czasowniki z biernikiem', 'nosić (+ biernik)', 'On zawsze nosi elegancki garnitur.', 'носити (+ знахідний)', 'Mieć ubranie na sobie']);
                 
                 // Idiomy
-                wsData.push([62, 'Rozdział pierwszy i zerowy', 'Idiomy', 'mieć w głowie groch z kapustą', 'Po całym dniu nauki mam w głowie groch z kapustą.', 'мати кашу в голові', 'Być zagmatwanym, mieć mętlik w głowie']);
-                wsData.push([63, 'Rozdział pierwszy i zerowy', 'Idiomy', 'łamać sobie język', 'Łamię sobie język na tych polskich słowach!', 'ламати собі язика', 'Mieć trudność z wymową']);
-                wsData.push([64, 'Rozdział pierwszy i zerowy', 'Idiomy', 'siedzieć jak na szpilkach', 'Siedziałam jak na szpilkach czekając na wyniki.', 'сидіти як на голках', 'Być bardzo zdenerwowanym, niecierpliwym']);
-                wsData.push([65, 'Rozdział pierwszy i zerowy', 'Idiomy', 'nerwy ze stali', 'Musisz mieć nerwy ze stali, żeby to wytrzymać.', 'нерви зі сталі / залізні нерви', 'Być bardzo spokojnym, opanowanym']);
+                wsData.push([62, 'Lekcja pierwszy i zerowy', 'Idiomy', 'mieć w głowie groch z kapustą', 'Po całym dniu nauki mam w głowie groch z kapustą.', 'мати кашу в голові', 'Być zagmatwanym, mieć mętlik w głowie']);
+                wsData.push([63, 'Lekcja pierwszy i zerowy', 'Idiomy', 'łamać sobie język', 'Łamię sobie język na tych polskich słowach!', 'ламати собі язика', 'Mieć trudność z wymową']);
+                wsData.push([64, 'Lekcja pierwszy i zerowy', 'Idiomy', 'siedzieć jak na szpilkach', 'Siedziałam jak na szpilkach czekając na wyniki.', 'сидіти як на голках', 'Być bardzo zdenerwowanym, niecierpliwym']);
+                wsData.push([65, 'Lekcja pierwszy i zerowy', 'Idiomy', 'nerwy ze stali', 'Musisz mieć nerwy ze stali, żeby to wytrzymać.', 'нерви зі сталі / залізні нерви', 'Być bardzo spokojnym, opanowanym']);
                 
-                // Rozdział drugi - ubrania
-                wsData.push([66, 'Rozdział drugi', 'Ubrania i moda', 'wełniany szalik', 'Mam na sobie wełniany szalik.', 'вовняний шарф', 'Szalik z wełny']);
-                wsData.push([67, 'Rozdział drugi', 'Ubrania i moda', 'ciemne dżinsy', 'Dzisiaj noszę ciemne dżinsy.', 'темні джинси', 'Spodnie jeansowe w ciemnym kolorze']);
-                wsData.push([68, 'Rozdział drugi', 'Ubrania i moda', 'za krótki podkoszulek', 'Ten podkoszulek jest za krótki.', 'занадто короткa футболка', 'Koszulka noszona pod innym ubraniem']);
-                wsData.push([69, 'Rozdział drugi', 'Ubrania i moda', 'czasopismo', 'Czytam ciekawe czasopismo o modzie.', 'журнал', 'Magazyn, periodyk']);
-                wsData.push([70, 'Rozdział drugi', 'Ubrania i moda', 'za duże dresy', 'Te dresy są za duże na mnie.', 'занадто великий спортивний костюм', 'Strój sportowy - zbyt luźny']);
-                wsData.push([71, 'Rozdział drugi', 'Ubrania i moda', 'okulary przeciwsłoneczne', 'W lecie zawsze noszę okulary przeciwsłoneczne.', 'сонцезахисні окуляри', 'Okulary chroniące przed słońcem']);
-                wsData.push([72, 'Rozdział drugi', 'Ubrania i moda', 'oddać do organizacji charytatywnej', 'Te stare ubrania oddam do organizacji charytatywnej.', 'віддати в благодійну організацію', 'Przekazać na cele dobroczynne']);
+                // Lekcja drugi - ubrania
+                wsData.push([66, 'Lekcja drugi', 'Ubrania i moda', 'wełniany szalik', 'Mam na sobie wełniany szalik.', 'вовняний шарф', 'Szalik z wełny']);
+                wsData.push([67, 'Lekcja drugi', 'Ubrania i moda', 'ciemne dżinsy', 'Dzisiaj noszę ciemne dżinsy.', 'темні джинси', 'Spodnie jeansowe w ciemnym kolorze']);
+                wsData.push([68, 'Lekcja drugi', 'Ubrania i moda', 'za krótki podkoszulek', 'Ten podkoszulek jest za krótki.', 'занадто короткa футболка', 'Koszulka noszona pod innym ubraniem']);
+                wsData.push([69, 'Lekcja drugi', 'Ubrania i moda', 'czasopismo', 'Czytam ciekawe czasopismo o modzie.', 'журнал', 'Magazyn, periodyk']);
+                wsData.push([70, 'Lekcja drugi', 'Ubrania i moda', 'za duże dresy', 'Te dresy są za duże na mnie.', 'занадто великий спортивний костюм', 'Strój sportowy - zbyt luźny']);
+                wsData.push([71, 'Lekcja drugi', 'Ubrania i moda', 'okulary przeciwsłoneczne', 'W lecie zawsze noszę okulary przeciwsłoneczne.', 'сонцезахисні окуляри', 'Okulary chroniące przed słońcem']);
+                wsData.push([72, 'Lekcja drugi', 'Ubrania i moda', 'oddać do organizacji charytatywnej', 'Te stare ubrania oddam do organizacji charytatywnej.', 'віддати в благодійну організацію', 'Przekazać na cele dobroczynne']);
                 
-                // Rozdział drugi - wygląd i uroda
-                wsData.push([73, 'Rozdział drugi', 'Uroda i wygląd', 'wzorzec urody', 'Współczesny wzorzec urody jest nierealistyczny.', 'стандарт краси', 'Ideał piękna w społeczeństwie']);
-                wsData.push([74, 'Rozdział drugi', 'Uroda i wygląd', 'symetryczna twarz', 'Ma bardzo symetryczną twarz.', 'симетричне обличчя', 'Twarz o harmonijnych proporcjach']);
-                wsData.push([75, 'Rozdział drugi', 'Uroda i wygląd', 'asymetria ciała', 'Lekka asymetria ciała jest całkowicie normalna.', 'асиметрія тіла', 'Brak idealnej symetrii w budowie ciała']);
-                wsData.push([76, 'Rozdział drugi', 'Uroda i wygląd', 'autorytet', 'Profesor ma duży autorytet wśród studentów.', 'авторитет', 'Szacunek, uznanie, powaga']);
-                wsData.push([77, 'Rozdział drugi', 'Uroda i wygląd', 'przedstawiać', 'Pozwól, że przedstawię ci moją koleżankę.', 'представляти', 'Prezentować kogoś, zapoznawać']);
-                wsData.push([78, 'Rozdział drugi', 'Uroda i wygląd', 'długoterminowe relacje', 'Długoterminowe relacje wymagają zaufania.', 'довгострокові відносини', 'Związki trwające długo']);
-                wsData.push([79, 'Rozdział drugi', 'Uroda i wygląd', 'krótkoterminowe relacje', 'Krótkoterminowe relacje to nie dla mnie.', 'короткострокові відносини', 'Związki na krótki czas']);
-                wsData.push([80, 'Rozdział drugi', 'Uroda i wygląd', 'mężczyzna średniego wzrostu', 'On jest mężczyzną średniego wzrostu.', 'чоловік середнього зросту', 'Ani wysoki, ani niski']);
-                wsData.push([81, 'Rozdział drugi', 'Uroda i wygląd', 'dominacja', 'W związku nie powinna być dominacja jednej osoby.', 'домінація', 'Przewaga, panowanie']);
-                wsData.push([82, 'Rozdział drugi', 'Uroda i wygląd', 'podbródek', 'Ma mocno zarysowany podbródek.', 'підборіддя', 'Dolna część twarzy']);
-                wsData.push([83, 'Rozdział drugi', 'Uroda i wygląd', 'jędrny', 'Regularne ćwiczenia sprawiają, że ciało jest jędrne.', 'пружний, підтягнутий', 'Napięty, sprężysty']);
-                wsData.push([84, 'Rozdział drugi', 'Uroda i wygląd', 'wyraziste oczy', 'Ma piękne, wyraziste oczy.', 'виразні очі', 'Oczy o intensywnym spojrzeniu']);
-                wsData.push([85, 'Rozdział drugi', 'Uroda i wygląd', 'zarost', 'Nosi modny, krótki zarost.', 'борода, щетина', 'Włosy na twarzy']);
-                wsData.push([86, 'Rozdział drugi', 'Uroda i wygląd', 'atrybut', 'Korona to atrybut władzy królewskiej.', 'атрибут', 'Cecha charakterystyczna, symbol']);
-                wsData.push([87, 'Rozdział drugi', 'Uroda i wygląd', 'systematyczne badania', 'Przeprowadzono systematyczne badania nad tym zjawiskiem.', 'систематичні дослідження', 'Regularne, uporządkowane badania naukowe']);
-                wsData.push([88, 'Rozdział drugi', 'Uroda i wygląd', 'zgrabny', 'Ma zgrabną sylwetkę dzięki sportowi.', 'стрункий, стрункий', 'O proporcjonalnej, ładnej budowie']);
-                wsData.push([89, 'Rozdział drugi', 'Uroda i wygląd', 'bez zmarszczek', 'Jej skóra jest gładka, bez zmarszczek.', 'без зморшок', 'Młodo wyglądająca skóra']);
-                wsData.push([90, 'Rozdział drugi', 'Uroda i wygląd', 'nieproporcjonalnie krótsze', 'Jedna noga jest nieproporcjonalnie krótsza.', 'непропорційно коротший', 'Zbyt krótkie w porównaniu']);
-                wsData.push([91, 'Rozdział drugi', 'Uroda i wygląd', 'coraz szczuplejsza', 'Modelki są coraz szczuplejsze.', 'дедалі стрункіша', 'Stopniowo chudnąca']);
-                wsData.push([92, 'Rozdział drugi', 'Uroda i wygląd', 'dynamiczny chód', 'Ma energiczny, dynamiczny chód.', 'динамічна хода', 'Pewny, żwawy sposób chodzenia']);
-                wsData.push([93, 'Rozdział drugi', 'Uroda i wygląd', 'lśniące włosy', 'Ma piękne, lśniące włosy.', 'блискуче волосся', 'Błyszczące, zdrowe włosy']);
-                wsData.push([94, 'Rozdział drugi', 'Uroda i wygląd', 'przeciętna twarz', 'Ma przeciętną twarz, bez wyróżniających cech.', 'пересічне обличчя', 'Typowa, zwykła twarz']);
-                wsData.push([95, 'Rozdział drugi', 'Uroda i wygląd', 'typowe wymiary', 'To ubranie ma typowe wymiary.', 'типові розміри', 'Standardowe rozmiary']);
-                wsData.push([96, 'Rozdział drugi', 'Uroda i wygląd', 'na wiele sposobów', 'Piękno można osiągnąć na wiele sposobów.', 'красивим можна бути багатьма способами', 'Różnorodność piękna']);
-                wsData.push([97, 'Rozdział drugi', 'Uroda i wygląd', 'być kojarzonym z', 'Wysoki wzrost jest kojarzony z sukcesem.', 'асоціюватися з', 'Być łączonym w myślach z czymś']);
-                wsData.push([98, 'Rozdział drugi', 'Uroda i wygląd', 'pasywność', 'Jego pasywność jest problemem w pracy grupowej.', 'пасивність', 'Bierność, brak inicjatywy']);
-                wsData.push([99, 'Rozdział drugi', 'Uroda i wygląd', 'niesamodzielność', 'Niesamodzielność może być wynikiem nadopiekuńczości.', 'несамостійність', 'Brak umiejętności radzenia sobie samemu']);
-                wsData.push([100, 'Rozdział drugi', 'Uroda i wygląd', 'organizacja charytatywna', 'Pracuję jako wolontariusz w organizacji charytatywnej.', 'благодійна організація', 'Instytucja pomagająca potrzebującym']);
-                wsData.push([101, 'Rozdział drugi', 'Uroda i wygląd', 'podłużna twarz', 'Ma podłużną twarz o wydłużonych rysach.', 'видовжене обличчя', 'Twarz o wydłużonym kształcie']);
-                wsData.push([102, 'Rozdział drugi', 'Uroda i wygląd', 'okrągła twarz', 'Dziecko ma uroczą okrągłą twarz.', 'кругле обличчя', 'Twarz o zaokrąglonych kształtach']);
-                wsData.push([103, 'Rozdział drugi', 'Uroda i wygląd', 'śniada cera', 'Ma śniadą cerę po wakacjach.', 'смуглява шкіра', 'Ciemniejsza karnacja']);
-                wsData.push([104, 'Rozdział drugi', 'Uroda i wygląd', 'piwne oczy', 'Ma ciepłe, piwne oczy.', 'карі очі', 'Oczy w kolorze piwa, brązowe']);
-                wsData.push([105, 'Rozdział drugi', 'Uroda i wygląd', 'zadarty nos', 'Mała dziewczynka ma zadarty nos.', 'кирпатий ніс', 'Nos lekko wzniesiony do góry']);
-                wsData.push([106, 'Rozdział drugi', 'Uroda i wygląd', 'haczykowaty nos', 'Ma charakterystyczny haczykowaty nos.', 'гачкуватий ніс', 'Nos zakrzywiony, orli']);
-                wsData.push([107, 'Rozdział drugi', 'Uroda i wygląd', 'jasna cera', 'Ma bardzo jasną cerą, musi uważać na słońce.', 'світла шкіра', 'Jasna karnacja']);
-                wsData.push([108, 'Rozdział drugi', 'Uroda i wygląd', 'piegi', 'Rude dzieci często mają piegi.', 'веснянки', 'Brązowe plamki na skórze']);
-                wsData.push([109, 'Rozdział drugi', 'Uroda i wygląd', 'grzywka', 'Obcięłam sobie grzywkę.', 'чубчик', 'Włosy opadające na czoło']);
-                wsData.push([110, 'Rozdział drugi', 'Uroda i wygląd', 'ona nosi śmieszne warkoczyki', 'Moja córka nosi śmieszne warkoczyki.', 'вона носить смішні косички', 'Fryzura z plecionymi włosami']);
-                wsData.push([111, 'Rozdział drugi', 'Uroda i wygląd', 'odstające uszy', 'Jako dziecko miałem kompleksy z powodu odstających uszu.', 'odstające уши', 'Uszy sterczące od głowy']);
-                wsData.push([112, 'Rozdział drugi', 'Uroda i wygląd', 'wydłużać się', 'Nos wydłuża się za każdym razem, jak kłamie.', 'видовжуватися', 'Stawać się dłuższym (jak u Pinokia)']);
-                wsData.push([113, 'Rozdział drugi', 'Uroda i wygląd', 'tęgi', 'Przed nami stał tęgi, kilkunastoletni chłopiec.', 'огрядний, повний', 'O budowie ciała - korpulentny']);
-                wsData.push([114, 'Rozdział drugi', 'Uroda i wygląd', 'kilkunastoletni chłopiec', 'Kilkunastoletni chłopiec siedział na ławce.', 'підліток (10-19 років)', 'Chłopak w wieku nastoletnim']);
-                wsData.push([115, 'Rozdział drugi', 'Uroda i wygląd', 'mieć charakterystyczną bliznę', 'Harry Potter ma charakterystyczną bliznę.', 'мати характерний шрам', 'Wyróżniający się ślad po zranieniu']);
-                wsData.push([116, 'Rozdział drugi', 'Uroda i wygląd', 'wysportowana sylwetka', 'Ma wysportowaną sylwetkę dzięki treningowi.', 'спортивна статура', 'Umięśniona, sprawna budowa ciała']);
-                wsData.push([117, 'Rozdział drugi', 'Uroda i wygląd', 'wyglądasz kwitnąco', 'Wyglądasz kwitnąco! Odpoczynek ci służy.', 'ти виглядаєш чудово', 'Wyglądać bardzo zdrowo i świeżo']);
-                wsData.push([118, 'Rozdział drugi', 'Uroda i wygląd', 'tryskać zdrowiem i energią', 'Po urlopie tryska zdrowiem i energią.', 'випромінювати здоров\'я та енергію', 'Być pełnym życia']);
-                wsData.push([119, 'Rozdział drugi', 'Uroda i wygląd', 'wyglądał jak siedem nieszczęść', 'Po chorobie wyglądał jak siedem nieszczęść.', 'виглядав жахливо', 'Wyglądać bardzo źle, niechlujnie']);
-                wsData.push([120, 'Rozdział drugi', 'Uroda i wygląd', 'dbać o siebie', 'Musisz dbać o siebie i o swoje zdrowie.', 'дбати про себе', 'Troszczyć się o własne dobro']);
-                wsData.push([121, 'Rozdział drugi', 'Uroda i wygląd', 'wyglądać jak milion dolarów', 'W tej sukience wyglądasz jak milion dolarów!', 'виглядати на мільйон доларів', 'Wyglądać bardzo elegancko i drogo']);
-                wsData.push([122, 'Rozdział drugi', 'Uroda i wygląd', 'tryskać entuzjazmem', 'Nowy pracownik tryska entuzjazmem.', 'випромінювати ентузіазм', 'Być bardzo entuzjastycznym']);
-                wsData.push([123, 'Rozdział drugi', 'Uroda i wygląd', 'samochwała', 'Nikt nie lubi samochwałów.', 'хвалько', 'Osoba przechwalająca się']);
-                wsData.push([124, 'Rozdział drugi', 'Uroda i wygląd', 'wydawać fortunę', 'Wydała fortunę na operacje plastyczne.', 'витрачати статки', 'Wydawać bardzo dużo pieniędzy']);
+                // Lekcja drugi - wygląd i uroda
+                wsData.push([73, 'Lekcja drugi', 'Uroda i wygląd', 'wzorzec urody', 'Współczesny wzorzec urody jest nierealistyczny.', 'стандарт краси', 'Ideał piękna w społeczeństwie']);
+                wsData.push([74, 'Lekcja drugi', 'Uroda i wygląd', 'symetryczna twarz', 'Ma bardzo symetryczną twarz.', 'симетричне обличчя', 'Twarz o harmonijnych proporcjach']);
+                wsData.push([75, 'Lekcja drugi', 'Uroda i wygląd', 'asymetria ciała', 'Lekka asymetria ciała jest całkowicie normalna.', 'асиметрія тіла', 'Brak idealnej symetrii w budowie ciała']);
+                wsData.push([76, 'Lekcja drugi', 'Uroda i wygląd', 'autorytet', 'Profesor ma duży autorytet wśród studentów.', 'авторитет', 'Szacunek, uznanie, powaga']);
+                wsData.push([77, 'Lekcja drugi', 'Uroda i wygląd', 'przedstawiać', 'Pozwól, że przedstawię ci moją koleżankę.', 'представляти', 'Prezentować kogoś, zapoznawać']);
+                wsData.push([78, 'Lekcja drugi', 'Uroda i wygląd', 'długoterminowe relacje', 'Długoterminowe relacje wymagają zaufania.', 'довгострокові відносини', 'Związki trwające długo']);
+                wsData.push([79, 'Lekcja drugi', 'Uroda i wygląd', 'krótkoterminowe relacje', 'Krótkoterminowe relacje to nie dla mnie.', 'короткострокові відносини', 'Związki na krótki czas']);
+                wsData.push([80, 'Lekcja drugi', 'Uroda i wygląd', 'mężczyzna średniego wzrostu', 'On jest mężczyzną średniego wzrostu.', 'чоловік середнього зросту', 'Ani wysoki, ani niski']);
+                wsData.push([81, 'Lekcja drugi', 'Uroda i wygląd', 'dominacja', 'W związku nie powinna być dominacja jednej osoby.', 'домінація', 'Przewaga, panowanie']);
+                wsData.push([82, 'Lekcja drugi', 'Uroda i wygląd', 'podbródek', 'Ma mocno zarysowany podbródek.', 'підборіддя', 'Dolna część twarzy']);
+                wsData.push([83, 'Lekcja drugi', 'Uroda i wygląd', 'jędrny', 'Regularne ćwiczenia sprawiają, że ciało jest jędrne.', 'пружний, підтягнутий', 'Napięty, sprężysty']);
+                wsData.push([84, 'Lekcja drugi', 'Uroda i wygląd', 'wyraziste oczy', 'Ma piękne, wyraziste oczy.', 'виразні очі', 'Oczy o intensywnym spojrzeniu']);
+                wsData.push([85, 'Lekcja drugi', 'Uroda i wygląd', 'zarost', 'Nosi modny, krótki zarost.', 'борода, щетина', 'Włosy na twarzy']);
+                wsData.push([86, 'Lekcja drugi', 'Uroda i wygląd', 'atrybut', 'Korona to atrybut władzy królewskiej.', 'атрибут', 'Cecha charakterystyczna, symbol']);
+                wsData.push([87, 'Lekcja drugi', 'Uroda i wygląd', 'systematyczne badania', 'Przeprowadzono systematyczne badania nad tym zjawiskiem.', 'систематичні дослідження', 'Regularne, uporządkowane badania naukowe']);
+                wsData.push([88, 'Lekcja drugi', 'Uroda i wygląd', 'zgrabny', 'Ma zgrabną sylwetkę dzięki sportowi.', 'стрункий, стрункий', 'O proporcjonalnej, ładnej budowie']);
+                wsData.push([89, 'Lekcja drugi', 'Uroda i wygląd', 'bez zmarszczek', 'Jej skóra jest gładka, bez zmarszczek.', 'без зморшок', 'Młodo wyglądająca skóra']);
+                wsData.push([90, 'Lekcja drugi', 'Uroda i wygląd', 'nieproporcjonalnie krótsze', 'Jedna noga jest nieproporcjonalnie krótsza.', 'непропорційно коротший', 'Zbyt krótkie w porównaniu']);
+                wsData.push([91, 'Lekcja drugi', 'Uroda i wygląd', 'coraz szczuplejsza', 'Modelki są coraz szczuplejsze.', 'дедалі стрункіша', 'Stopniowo chudnąca']);
+                wsData.push([92, 'Lekcja drugi', 'Uroda i wygląd', 'dynamiczny chód', 'Ma energiczny, dynamiczny chód.', 'динамічна хода', 'Pewny, żwawy sposób chodzenia']);
+                wsData.push([93, 'Lekcja drugi', 'Uroda i wygląd', 'lśniące włosy', 'Ma piękne, lśniące włosy.', 'блискуче волосся', 'Błyszczące, zdrowe włosy']);
+                wsData.push([94, 'Lekcja drugi', 'Uroda i wygląd', 'przeciętna twarz', 'Ma przeciętną twarz, bez wyróżniających cech.', 'пересічне обличчя', 'Typowa, zwykła twarz']);
+                wsData.push([95, 'Lekcja drugi', 'Uroda i wygląd', 'typowe wymiary', 'To ubranie ma typowe wymiary.', 'типові розміри', 'Standardowe rozmiary']);
+                wsData.push([96, 'Lekcja drugi', 'Uroda i wygląd', 'na wiele sposobów', 'Piękno można osiągnąć na wiele sposobów.', 'красивим можна бути багатьма способами', 'Różnorodność piękna']);
+                wsData.push([97, 'Lekcja drugi', 'Uroda i wygląd', 'być kojarzonym z', 'Wysoki wzrost jest kojarzony z sukcesem.', 'асоціюватися з', 'Być łączonym w myślach z czymś']);
+                wsData.push([98, 'Lekcja drugi', 'Uroda i wygląd', 'pasywność', 'Jego pasywność jest problemem w pracy grupowej.', 'пасивність', 'Bierność, brak inicjatywy']);
+                wsData.push([99, 'Lekcja drugi', 'Uroda i wygląd', 'niesamodzielność', 'Niesamodzielność może być wynikiem nadopiekuńczości.', 'несамостійність', 'Brak umiejętności radzenia sobie samemu']);
+                wsData.push([100, 'Lekcja drugi', 'Uroda i wygląd', 'organizacja charytatywna', 'Pracuję jako wolontariusz w organizacji charytatywnej.', 'благодійна організація', 'Instytucja pomagająca potrzebującym']);
+                wsData.push([101, 'Lekcja drugi', 'Uroda i wygląd', 'podłużna twarz', 'Ma podłużną twarz o wydłużonych rysach.', 'видовжене обличчя', 'Twarz o wydłużonym kształcie']);
+                wsData.push([102, 'Lekcja drugi', 'Uroda i wygląd', 'okrągła twarz', 'Dziecko ma uroczą okrągłą twarz.', 'кругле обличчя', 'Twarz o zaokrąglonych kształtach']);
+                wsData.push([103, 'Lekcja drugi', 'Uroda i wygląd', 'śniada cera', 'Ma śniadą cerę po wakacjach.', 'смуглява шкіра', 'Ciemniejsza karnacja']);
+                wsData.push([104, 'Lekcja drugi', 'Uroda i wygląd', 'piwne oczy', 'Ma ciepłe, piwne oczy.', 'карі очі', 'Oczy w kolorze piwa, brązowe']);
+                wsData.push([105, 'Lekcja drugi', 'Uroda i wygląd', 'zadarty nos', 'Mała dziewczynka ma zadarty nos.', 'кирпатий ніс', 'Nos lekko wzniesiony do góry']);
+                wsData.push([106, 'Lekcja drugi', 'Uroda i wygląd', 'haczykowaty nos', 'Ma charakterystyczny haczykowaty nos.', 'гачкуватий ніс', 'Nos zakrzywiony, orli']);
+                wsData.push([107, 'Lekcja drugi', 'Uroda i wygląd', 'jasna cera', 'Ma bardzo jasną cerą, musi uważać na słońce.', 'світла шкіра', 'Jasna karnacja']);
+                wsData.push([108, 'Lekcja drugi', 'Uroda i wygląd', 'piegi', 'Rude dzieci często mają piegi.', 'веснянки', 'Brązowe plamki na skórze']);
+                wsData.push([109, 'Lekcja drugi', 'Uroda i wygląd', 'grzywka', 'Obcięłam sobie grzywkę.', 'чубчик', 'Włosy opadające na czoło']);
+                wsData.push([110, 'Lekcja drugi', 'Uroda i wygląd', 'ona nosi śmieszne warkoczyki', 'Moja córka nosi śmieszne warkoczyki.', 'вона носить смішні косички', 'Fryzura z plecionymi włosami']);
+                wsData.push([111, 'Lekcja drugi', 'Uroda i wygląd', 'odstające uszy', 'Jako dziecko miałem kompleksy z powodu odstających uszu.', 'odstające уши', 'Uszy sterczące od głowy']);
+                wsData.push([112, 'Lekcja drugi', 'Uroda i wygląd', 'wydłużać się', 'Nos wydłuża się za każdym razem, jak kłamie.', 'видовжуватися', 'Stawać się dłuższym (jak u Pinokia)']);
+                wsData.push([113, 'Lekcja drugi', 'Uroda i wygląd', 'tęgi', 'Przed nami stał tęgi, kilkunastoletni chłopiec.', 'огрядний, повний', 'O budowie ciała - korpulentny']);
+                wsData.push([114, 'Lekcja drugi', 'Uroda i wygląd', 'kilkunastoletni chłopiec', 'Kilkunastoletni chłopiec siedział na ławce.', 'підліток (10-19 років)', 'Chłopak w wieku nastoletnim']);
+                wsData.push([115, 'Lekcja drugi', 'Uroda i wygląd', 'mieć charakterystyczną bliznę', 'Harry Potter ma charakterystyczną bliznę.', 'мати характерний шрам', 'Wyróżniający się ślad po zranieniu']);
+                wsData.push([116, 'Lekcja drugi', 'Uroda i wygląd', 'wysportowana sylwetka', 'Ma wysportowaną sylwetkę dzięki treningowi.', 'спортивна статура', 'Umięśniona, sprawna budowa ciała']);
+                wsData.push([117, 'Lekcja drugi', 'Uroda i wygląd', 'wyglądasz kwitnąco', 'Wyglądasz kwitnąco! Odpoczynek ci służy.', 'ти виглядаєш чудово', 'Wyglądać bardzo zdrowo i świeżo']);
+                wsData.push([118, 'Lekcja drugi', 'Uroda i wygląd', 'tryskać zdrowiem i energią', 'Po urlopie tryska zdrowiem i energią.', 'випромінювати здоров\'я та енергію', 'Być pełnym życia']);
+                wsData.push([119, 'Lekcja drugi', 'Uroda i wygląd', 'wyglądał jak siedem nieszczęść', 'Po chorobie wyglądał jak siedem nieszczęść.', 'виглядав жахливо', 'Wyglądać bardzo źle, niechlujnie']);
+                wsData.push([120, 'Lekcja drugi', 'Uroda i wygląd', 'dbać o siebie', 'Musisz dbać o siebie i o swoje zdrowie.', 'дбати про себе', 'Troszczyć się o własne dobro']);
+                wsData.push([121, 'Lekcja drugi', 'Uroda i wygląd', 'wyglądać jak milion dolarów', 'W tej sukience wyglądasz jak milion dolarów!', 'виглядати на мільйон доларів', 'Wyglądać bardzo elegancko i drogo']);
+                wsData.push([122, 'Lekcja drugi', 'Uroda i wygląd', 'tryskać entuzjazmem', 'Nowy pracownik tryska entuzjazmem.', 'випромінювати ентузіазм', 'Być bardzo entuzjastycznym']);
+                wsData.push([123, 'Lekcja drugi', 'Uroda i wygląd', 'samochwała', 'Nikt nie lubi samochwałów.', 'хвалько', 'Osoba przechwalająca się']);
+                wsData.push([124, 'Lekcja drugi', 'Uroda i wygląd', 'wydawać fortunę', 'Wydała fortunę na operacje plastyczne.', 'витрачати статки', 'Wydawać bardzo dużo pieniędzy']);
                 
-                // Rozdział trzeci - praca i zatrudnienie
-                wsData.push([125, 'Rozdział trzeci', 'Prawo pracy', 'żądać (+ dopełniacz)', 'Pracodawca może żądać od kandydata podania imienia, nazwiska oraz wykształcenia.', 'вимагати (+ родовий)', 'Domagać się czegoś stanowczo']);
-                wsData.push([126, 'Rozdział trzeci', 'Prawo pracy', 'plany macierzyńskie', 'Pracodawca nie może pytać o plany macierzyńskie.', 'плани щодо материнства', 'Zamiary związane z posiadaniem dzieci']);
-                wsData.push([127, 'Rozdział trzeci', 'Prawo pracy', 'przynależność', 'Nie można dyskryminować ze względu na przynależność do partii.', 'належність', 'Członkostwo w organizacji']);
-                wsData.push([128, 'Rozdział trzeci', 'Prawo pracy', 'związek zawodowy', 'Pracownicy założyli związek zawodowy.', 'профспілка', 'Organizacja broniąca praw pracowników']);
-                wsData.push([129, 'Rozdział trzeci', 'Prawo pracy', 'przekonanie', 'Każdy ma prawo do swoich przekonań.', 'переконання', 'Głębokie poglądy, wiara w coś']);
-                wsData.push([130, 'Rozdział trzeci', 'Prawo pracy', 'zatrudnienie', 'Szukam zatrudnienia w tej branży.', 'працевлаштування', 'Praca, posada']);
-                wsData.push([131, 'Rozdział trzeci', 'Prawo pracy', 'warunki pracy', 'Warunki pracy w tej firmie są bardzo dobre.', 'умови праці', 'Okoliczności wykonywania pracy']);
-                wsData.push([132, 'Rozdział trzeci', 'Prawo pracy', 'warunki zatrudnienia', 'Warunki zatrudnienia pracownika zależą od jego kwalifikacji.', 'умови працевлаштування', 'Zasady i wynagrodzenie w umowie']);
-                wsData.push([133, 'Rozdział trzeci', 'Prawo pracy', 'wzrastać', 'Liczba bezrobotnych wzrasta każdego roku.', 'зростати', 'Zwiększać się, rosnąć']);
-                wsData.push([134, 'Rozdział trzeci', 'Prawo pracy', 'gorszy', 'Warunki pracy są gorsze niż w poprzedniej firmie.', 'гірший', 'Mniej dobry']);
-                wsData.push([135, 'Rozdział trzeci', 'Prawo pracy', 'działać', 'Firma działa na rynku międzynarodowym.', 'діяти', 'Funkcjonować, operować']);
-                wsData.push([136, 'Rozdział trzeci', 'Prawo pracy', 'przeciwdziałać', 'Musimy przeciwdziałać dyskryminacji w pracy.', 'протидіяти', 'Zapobiegać czemuś złemu']);
-                wsData.push([137, 'Rozdział trzeci', 'Prawo pracy', 'zmniejszać się', 'Bezrobocie zmniejsza się z roku na rok.', 'зменшуватися', 'Maleć, spadać']);
-                wsData.push([138, 'Rozdział trzeci', 'Prawo pracy', 'poglądy', 'Kodeks zakazuje nierównego traktowania ze względu na poglądy religijne.', 'погляди', 'Opinie, przekonania']);
-                wsData.push([139, 'Rozdział trzeci', 'Prawo pracy', 'zwolnienie', 'Dostał zwolnienie z pracy po dwóch latach.', 'звільнення', 'Utrata pracy']);
-                wsData.push([140, 'Rozdział trzeci', 'Prawo pracy', 'mobbing', 'Mobbing w pracy jest niedozwolony.', 'мобінг', 'Nękanie, prześladowanie w pracy']);
-                wsData.push([141, 'Rozdział trzeci', 'Prawo pracy', 'bez względu na', 'Każdy ma taką samą liczbę dni urlopowych bez względu na staż pracy.', 'незалежно від', 'Niezależnie od czegoś']);
-                wsData.push([142, 'Rozdział trzeci', 'Prawo pracy', 'niewykorzystane dni wolne', 'Mam jeszcze 5 niewykorzystanych dni wolnych.', 'невикористані дні відпустки', 'Urlop, który jeszcze nie został wzięty']);
-                wsData.push([143, 'Rozdział trzeci', 'Prawo pracy', 'krótko, ale intensywnie', 'Pracujemy krótko, ale intensywnie.', 'коротко, але інтенсивно', 'Szybko i efektywnie']);
+                // Lekcja trzeci - praca i zatrudnienie
+                wsData.push([125, 'Lekcja trzeci', 'Prawo pracy', 'żądać (+ dopełniacz)', 'Pracodawca może żądać od kandydata podania imienia, nazwiska oraz wykształcenia.', 'вимагати (+ родовий)', 'Domagać się czegoś stanowczo']);
+                wsData.push([126, 'Lekcja trzeci', 'Prawo pracy', 'plany macierzyńskie', 'Pracodawca nie może pytać o plany macierzyńskie.', 'плани щодо материнства', 'Zamiary związane z posiadaniem dzieci']);
+                wsData.push([127, 'Lekcja trzeci', 'Prawo pracy', 'przynależność', 'Nie można dyskryminować ze względu na przynależność do partii.', 'належність', 'Członkostwo w organizacji']);
+                wsData.push([128, 'Lekcja trzeci', 'Prawo pracy', 'związek zawodowy', 'Pracownicy założyli związek zawodowy.', 'профспілка', 'Organizacja broniąca praw pracowników']);
+                wsData.push([129, 'Lekcja trzeci', 'Prawo pracy', 'przekonanie', 'Każdy ma prawo do swoich przekonań.', 'переконання', 'Głębokie poglądy, wiara w coś']);
+                wsData.push([130, 'Lekcja trzeci', 'Prawo pracy', 'zatrudnienie', 'Szukam zatrudnienia w tej branży.', 'працевлаштування', 'Praca, posada']);
+                wsData.push([131, 'Lekcja trzeci', 'Prawo pracy', 'warunki pracy', 'Warunki pracy w tej firmie są bardzo dobre.', 'умови праці', 'Okoliczności wykonywania pracy']);
+                wsData.push([132, 'Lekcja trzeci', 'Prawo pracy', 'warunki zatrudnienia', 'Warunki zatrudnienia pracownika zależą od jego kwalifikacji.', 'умови працевлаштування', 'Zasady i wynagrodzenie w umowie']);
+                wsData.push([133, 'Lekcja trzeci', 'Prawo pracy', 'wzrastać', 'Liczba bezrobotnych wzrasta każdego roku.', 'зростати', 'Zwiększać się, rosnąć']);
+                wsData.push([134, 'Lekcja trzeci', 'Prawo pracy', 'gorszy', 'Warunki pracy są gorsze niż w poprzedniej firmie.', 'гірший', 'Mniej dobry']);
+                wsData.push([135, 'Lekcja trzeci', 'Prawo pracy', 'działać', 'Firma działa na rynku międzynarodowym.', 'діяти', 'Funkcjonować, operować']);
+                wsData.push([136, 'Lekcja trzeci', 'Prawo pracy', 'przeciwdziałać', 'Musimy przeciwdziałać dyskryminacji w pracy.', 'протидіяти', 'Zapobiegać czemuś złemu']);
+                wsData.push([137, 'Lekcja trzeci', 'Prawo pracy', 'zmniejszać się', 'Bezrobocie zmniejsza się z roku na rok.', 'зменшуватися', 'Maleć, spadać']);
+                wsData.push([138, 'Lekcja trzeci', 'Prawo pracy', 'poglądy', 'Kodeks zakazuje nierównego traktowania ze względu na poglądy religijne.', 'погляди', 'Opinie, przekonania']);
+                wsData.push([139, 'Lekcja trzeci', 'Prawo pracy', 'zwolnienie', 'Dostał zwolnienie z pracy po dwóch latach.', 'звільнення', 'Utrata pracy']);
+                wsData.push([140, 'Lekcja trzeci', 'Prawo pracy', 'mobbing', 'Mobbing w pracy jest niedozwolony.', 'мобінг', 'Nękanie, prześladowanie w pracy']);
+                wsData.push([141, 'Lekcja trzeci', 'Prawo pracy', 'bez względu na', 'Każdy ma taką samą liczbę dni urlopowych bez względu na staż pracy.', 'незалежно від', 'Niezależnie od czegoś']);
+                wsData.push([142, 'Lekcja trzeci', 'Prawo pracy', 'niewykorzystane dni wolne', 'Mam jeszcze 5 niewykorzystanych dni wolnych.', 'невикористані дні відпустки', 'Urlop, który jeszcze nie został wzięty']);
+                wsData.push([143, 'Lekcja trzeci', 'Prawo pracy', 'krótko, ale intensywnie', 'Pracujemy krótko, ale intensywnie.', 'коротко, але інтенсивно', 'Szybko i efektywnie']);
                 
-                // Rozdział trzeci - reakcje i uczucia
-                wsData.push([144, 'Rozdział trzeci', 'Zwroty konwersacyjne', 'jestem zadowolony/zadowolona ze zmian', 'Jestem zadowolona ze zmian w firmie.', 'я задоволений/задоволена змінами', 'Wyrażenie satysfakcji']);
-                wsData.push([145, 'Rozdział trzeci', 'Zwroty konwersacyjne', 'jestem niezadowolony/niezadowolona ze zmian', 'Jestem niezadowolony ze zmian w polityce firmy.', 'я незадоволений/незадоволена змінами', 'Wyrażenie braku satysfakcji']);
-                wsData.push([146, 'Rozdział trzeci', 'Zwroty konwersacyjne', 'cieszę się, że dobrze poszło', 'Cieszę się, że dobrze poszło na rozmowie.', 'я радію, що все вийшло добре', 'Wyrażenie radości z sukcesu']);
-                wsData.push([147, 'Rozdział trzeci', 'Zwroty konwersacyjne', 'udało mi się dostać pracę', 'Udało mi się dostać pracę w dobrej firmie!', 'мені вдалося отримати роботу', 'Osiągnięcie celu zawodowego']);
-                wsData.push([148, 'Rozdział trzeci', 'Zwroty konwersacyjne', 'o nie!', 'O nie! Zapomniałam o spotkaniu!', 'о ні!', 'Wykrzyknik wyrażający zdenerwowanie']);
-                wsData.push([149, 'Rozdział trzeci', 'Zwroty konwersacyjne', 'ładna historia', 'No no, ładna historia! Jak mogłeś to zapomnieć?', 'гарна історія', 'Idiom wyrażający zdziwienie, rozbawienie lub irytację sytuacją']);
-                wsData.push([150, 'Rozdział trzeci', 'Zwroty konwersacyjne', 'jestem rozczarowany tą decyzją', 'Jestem rozczarowany tą decyzją zarządu.', 'я розчарований цим рішенням', 'Wyrażenie zawodu']);
+                // Lekcja trzeci - reakcje i uczucia
+                wsData.push([144, 'Lekcja trzeci', 'Zwroty konwersacyjne', 'jestem zadowolony/zadowolona ze zmian', 'Jestem zadowolona ze zmian w firmie.', 'я задоволений/задоволена змінами', 'Wyrażenie satysfakcji']);
+                wsData.push([145, 'Lekcja trzeci', 'Zwroty konwersacyjne', 'jestem niezadowolony/niezadowolona ze zmian', 'Jestem niezadowolony ze zmian w polityce firmy.', 'я незадоволений/незадоволена змінами', 'Wyrażenie braku satysfakcji']);
+                wsData.push([146, 'Lekcja trzeci', 'Zwroty konwersacyjne', 'cieszę się, że dobrze poszło', 'Cieszę się, że dobrze poszło na rozmowie.', 'я радію, що все вийшло добре', 'Wyrażenie radości z sukcesu']);
+                wsData.push([147, 'Lekcja trzeci', 'Zwroty konwersacyjne', 'udało mi się dostać pracę', 'Udało mi się dostać pracę w dobrej firmie!', 'мені вдалося отримати роботу', 'Osiągnięcie celu zawodowego']);
+                wsData.push([148, 'Lekcja trzeci', 'Zwroty konwersacyjne', 'o nie!', 'O nie! Zapomniałam o spotkaniu!', 'о ні!', 'Wykrzyknik wyrażający zdenerwowanie']);
+                wsData.push([149, 'Lekcja trzeci', 'Zwroty konwersacyjne', 'ładna historia', 'No no, ładna historia! Jak mogłeś to zapomnieć?', 'гарна історія', 'Idiom wyrażający zdziwienie, rozbawienie lub irytację sytuacją']);
+                wsData.push([150, 'Lekcja trzeci', 'Zwroty konwersacyjne', 'jestem rozczarowany tą decyzją', 'Jestem rozczarowany tą decyzją zarządu.', 'я розчарований цим рішенням', 'Wyrażenie zawodu']);
                 
-                // Rozdział trzeci - codzienne czynności i praca
-                wsData.push([151, 'Rozdział trzeci', 'Praca i życie', 'zajmować się dziećmi', 'Dzisiaj zajmuję się dziećmi, bo żona jest w pracy.', 'займатися дітьми', 'Opiekować się dziećmi']);
-                wsData.push([152, 'Rozdział trzeci', 'Praca i życie', 'potrzebuję osób lepiej wykwalifikowanych', 'Do tego projektu potrzebuję osób lepiej wykwalifikowanych.', 'мені потрібні краще кваліфіковані люди', 'Szukać pracowników z wyższymi kompetencjami']);
-                wsData.push([153, 'Rozdział trzeci', 'Praca i życie', 'dobrze płatna praca', 'Znalazłem dobrze płatną pracę.', 'добре оплачувана робота', 'Praca z wysokim wynagrodzeniem']);
-                wsData.push([154, 'Rozdział trzeci', 'Praca i życie', 'płaca', 'Moja płaca została podniesiona o 10%.', 'заробітна плата, зарплата', 'Wynagrodzenie za pracę']);
-                wsData.push([155, 'Rozdział trzeci', 'Praca i życie', 'na etacie', 'Pracuję na etacie w tej firmie.', 'на штатній посаді', 'Na stałej umowie o pracę']);
-                wsData.push([156, 'Rozdział trzeci', 'Praca i życie', 'dotacja na podnoszenie kwalifikacji', 'Firma daje dotację na podnoszenie kwalifikacji.', 'дотація на підвищення кваліфікації', 'Pieniądze na szkolenia']);
-                wsData.push([157, 'Rozdział trzeci', 'Praca i życie', 'nauczyciel poświęca czas na pracę w szkole', 'Nauczyciel poświęca dużo czasu na pracę w szkole.', 'вчитель присвячує час роботі в школі', 'Dedykować czas pracy']);
-                wsData.push([158, 'Rozdział trzeci', 'Praca i życie', 'spotykać się w sprawie strajku', 'Pracownicy spotykają się w sprawie strajku.', 'зустрічатися з приводу страйку', 'Organizować protest']);
-                wsData.push([159, 'Rozdział trzeci', 'Praca i życie', 'w mieszkaniu jest remont', 'W moim mieszkaniu jest remont.', 'в квартирі ремонт', 'Trwają prace budowlane']);
-                wsData.push([160, 'Rozdział trzeci', 'Praca i życie', 'wypożyczyć książki', 'Muszę wypożyczyć książki z biblioteki.', 'взяти книжки напрокат', 'Pożyczyć coś na czas']);
-                wsData.push([161, 'Rozdział trzeci', 'Praca i życie', 'spotykali się po latach', 'Stare przyjaciółki spotykały się po latach.', 'зустрілися через роки', 'Zobaczyć się po długim czasie']);
+                // Lekcja trzeci - codzienne czynności i praca
+                wsData.push([151, 'Lekcja trzeci', 'Praca i życie', 'zajmować się dziećmi', 'Dzisiaj zajmuję się dziećmi, bo żona jest w pracy.', 'займатися дітьми', 'Opiekować się dziećmi']);
+                wsData.push([152, 'Lekcja trzeci', 'Praca i życie', 'potrzebuję osób lepiej wykwalifikowanych', 'Do tego projektu potrzebuję osób lepiej wykwalifikowanych.', 'мені потрібні краще кваліфіковані люди', 'Szukać pracowników z wyższymi kompetencjami']);
+                wsData.push([153, 'Lekcja trzeci', 'Praca i życie', 'dobrze płatna praca', 'Znalazłem dobrze płatną pracę.', 'добре оплачувана робота', 'Praca z wysokim wynagrodzeniem']);
+                wsData.push([154, 'Lekcja trzeci', 'Praca i życie', 'płaca', 'Moja płaca została podniesiona o 10%.', 'заробітна плата, зарплата', 'Wynagrodzenie za pracę']);
+                wsData.push([155, 'Lekcja trzeci', 'Praca i życie', 'na etacie', 'Pracuję na etacie w tej firmie.', 'на штатній посаді', 'Na stałej umowie o pracę']);
+                wsData.push([156, 'Lekcja trzeci', 'Praca i życie', 'dotacja na podnoszenie kwalifikacji', 'Firma daje dotację na podnoszenie kwalifikacji.', 'дотація на підвищення кваліфікації', 'Pieniądze na szkolenia']);
+                wsData.push([157, 'Lekcja trzeci', 'Praca i życie', 'nauczyciel poświęca czas na pracę w szkole', 'Nauczyciel poświęca dużo czasu na pracę w szkole.', 'вчитель присвячує час роботі в школі', 'Dedykować czas pracy']);
+                wsData.push([158, 'Lekcja trzeci', 'Praca i życie', 'spotykać się w sprawie strajku', 'Pracownicy spotykają się w sprawie strajku.', 'зустрічатися з приводу страйку', 'Organizować protest']);
+                wsData.push([159, 'Lekcja trzeci', 'Praca i życie', 'w mieszkaniu jest remont', 'W moim mieszkaniu jest remont.', 'в квартирі ремонт', 'Trwają prace budowlane']);
+                wsData.push([160, 'Lekcja trzeci', 'Praca i życie', 'wypożyczyć książki', 'Muszę wypożyczyć książki z biblioteki.', 'взяти книжки напрокат', 'Pożyczyć coś na czas']);
+                wsData.push([161, 'Lekcja trzeci', 'Praca i życie', 'spotykali się po latach', 'Stare przyjaciółki spotykały się po latach.', 'зустрілися через роки', 'Zobaczyć się po długim czasie']);
                 
-                // Rozdział trzeci - wykształcenie i badania
-                wsData.push([162, 'Rozdział trzeci', 'Praca i życie', 'mieć wykształcenie wyższe', 'Ma wykształcenie wyższe z ekonomii.', 'мати вищу освіту', 'Ukończyć uniwersytet']);
-                wsData.push([163, 'Rozdział trzeci', 'Praca i życie', 'mieć wykształcenie podstawowe', 'Ma tylko wykształcenie podstawowe.', 'мати базову освіту', 'Ukończyć szkołę podstawową']);
-                wsData.push([164, 'Rozdział trzeci', 'Praca i życie', 'respondent', 'Respondent wypełnił ankietę.', 'респондент', 'Osoba biorąca udział w badaniu']);
-                wsData.push([165, 'Rozdział trzeci', 'Praca i życie', 'sytuacja materialna', 'Sytuacja materialna rodziny się poprawiła.', 'матеріальний стан', 'Stan finansowy, zamożność']);
+                // Lekcja trzeci - wykształcenie i badania
+                wsData.push([162, 'Lekcja trzeci', 'Praca i życie', 'mieć wykształcenie wyższe', 'Ma wykształcenie wyższe z ekonomii.', 'мати вищу освіту', 'Ukończyć uniwersytet']);
+                wsData.push([163, 'Lekcja trzeci', 'Praca i życie', 'mieć wykształcenie podstawowe', 'Ma tylko wykształcenie podstawowe.', 'мати базову освіту', 'Ukończyć szkołę podstawową']);
+                wsData.push([164, 'Lekcja trzeci', 'Praca i życie', 'respondent', 'Respondent wypełnił ankietę.', 'респондент', 'Osoba biorąca udział w badaniu']);
+                wsData.push([165, 'Lekcja trzeci', 'Praca i życie', 'sytuacja materialna', 'Sytuacja materialna rodziny się poprawiła.', 'матеріальний стан', 'Stan finansowy, zamożność']);
                 
-                // Rozdział trzeci - sprzęt AGD
-                wsData.push([166, 'Rozdział trzeci', 'AGD i dom', 'energooszczędność', 'Ten sprzęt charakteryzuje się wysoką energooszczędnością.', 'енергозбереження', 'Niska konsumpcja energii']);
-                wsData.push([167, 'Rozdział trzeci', 'AGD i dom', 'pralka', 'Muszę kupić nową pralkę.', 'пральна машина', 'Urządzenie do prania ubrań']);
-                wsData.push([168, 'Rozdział trzeci', 'AGD i dom', 'piekarnik', 'Piekę ciasto w piekarniku.', 'духовка', 'Urządzenie do pieczenia']);
-                wsData.push([169, 'Rozdział trzeci', 'AGD i dom', 'zmywarka', 'Zmywarka oszczędza dużo czasu.', 'посудомийна машина', 'Urządzenie do mycia naczyń']);
-                wsData.push([170, 'Rozdział trzeci', 'AGD i dom', 'lodówka', 'W lodówce nie ma już mleka.', 'холодильник', 'Urządzenie do chłodzenia żywności']);
-                wsData.push([171, 'Rozdział trzeci', 'AGD i dom', 'suszarka do włosów', 'Susząc włosy suszarką trzeba uważać na temperaturę.', 'фен', 'Urządzenie do suszenia włosów']);
-                wsData.push([172, 'Rozdział trzeci', 'AGD i dom', 'robot odkurzający', 'Robot odkurzający sprząta sam.', 'робот-пилосос', 'Automatyczny odkurzacz']);
-                wsData.push([173, 'Rozdział trzeci', 'AGD i dom', 'oczyszczacz powietrza', 'Oczyszczacz powietrza pomaga alergikom.', 'очищувач повітря', 'Urządzenie oczyszczające powietrze']);
+                // Lekcja trzeci - sprzęt AGD
+                wsData.push([166, 'Lekcja trzeci', 'AGD i dom', 'energooszczędność', 'Ten sprzęt charakteryzuje się wysoką energooszczędnością.', 'енергозбереження', 'Niska konsumpcja energii']);
+                wsData.push([167, 'Lekcja trzeci', 'AGD i dom', 'pralka', 'Muszę kupić nową pralkę.', 'пральна машина', 'Urządzenie do prania ubrań']);
+                wsData.push([168, 'Lekcja trzeci', 'AGD i dom', 'piekarnik', 'Piekę ciasto w piekarniku.', 'духовка', 'Urządzenie do pieczenia']);
+                wsData.push([169, 'Lekcja trzeci', 'AGD i dom', 'zmywarka', 'Zmywarka oszczędza dużo czasu.', 'посудомийна машина', 'Urządzenie do mycia naczyń']);
+                wsData.push([170, 'Lekcja trzeci', 'AGD i dom', 'lodówka', 'W lodówce nie ma już mleka.', 'холодильник', 'Urządzenie do chłodzenia żywności']);
+                wsData.push([171, 'Lekcja trzeci', 'AGD i dom', 'suszarka do włosów', 'Susząc włosy suszarką trzeba uważać na temperaturę.', 'фен', 'Urządzenie do suszenia włosów']);
+                wsData.push([172, 'Lekcja trzeci', 'AGD i dom', 'robot odkurzający', 'Robot odkurzający sprząta sam.', 'робот-пилосос', 'Automatyczny odkurzacz']);
+                wsData.push([173, 'Lekcja trzeci', 'AGD i dom', 'oczyszczacz powietrza', 'Oczyszczacz powietrza pomaga alergikom.', 'очищувач повітря', 'Urządzenie oczyszczające powietrze']);
                 
-                // Rozdział trzeci - idiomy
-                wsData.push([174, 'Rozdział trzeci', 'Idiomy', 'upiec dwie pieczenie na jednym ogniu', 'Zrobię zakupy i odwiedzę matkę - upiekę dwie pieczenie na jednym ogniu.', 'вбити двох зайців одним пострілом', 'Załatwić dwie sprawy jednocześnie']);
-                wsData.push([175, 'Rozdział trzeci', 'Idiomy', 'wtrącić swoje trzy grosze', 'Musi zawsze wtrącić swoje trzy grosze do rozmowy.', 'вставити свої п\'ять копійок', 'Dodać swoją opinię nieproszonemu']);
-                wsData.push([176, 'Rozdział trzeci', 'Idiomy', 'ni w pięć, ni w dziewięć', 'Powiedział to ni w pięć, ni w dziewięć.', 'ні з того, ні з сього', 'Bez powodu, bez sensu']);
-                wsData.push([177, 'Rozdział trzeci', 'Idiomy', 'być w siódmym niebie', 'Po awansie była w siódmym niebie.', 'бути на сьомому небі', 'Być bardzo szczęśliwym']);
+                // Lekcja trzeci - idiomy
+                wsData.push([174, 'Lekcja trzeci', 'Idiomy', 'upiec dwie pieczenie na jednym ogniu', 'Zrobię zakupy i odwiedzę matkę - upiekę dwie pieczenie na jednym ogniu.', 'вбити двох зайців одним пострілом', 'Załatwić dwie sprawy jednocześnie']);
+                wsData.push([175, 'Lekcja trzeci', 'Idiomy', 'wtrącić swoje trzy grosze', 'Musi zawsze wtrącić swoje trzy grosze do rozmowy.', 'вставити свої п\'ять копійок', 'Dodać swoją opinię nieproszonemu']);
+                wsData.push([176, 'Lekcja trzeci', 'Idiomy', 'ni w pięć, ni w dziewięć', 'Powiedział to ni w pięć, ni w dziewięć.', 'ні з того, ні з сього', 'Bez powodu, bez sensu']);
+                wsData.push([177, 'Lekcja trzeci', 'Idiomy', 'być w siódmym niebie', 'Po awansie była w siódmym niebie.', 'бути на сьомому небі', 'Być bardzo szczęśliwym']);
                 
-                // Rozdział trzeci - inne
-                wsData.push([178, 'Rozdział trzeci', 'Idiomy', 'coś mnie denerwuje', 'Ten hałas mnie denerwuje.', 'щось мене дратує', 'Wyrażenie irytacji']);
-                wsData.push([179, 'Rozdział trzeci', 'Idiomy', 'urzędnik', 'Urzędnik załatwił mi wszystkie dokumenty.', 'чиновник, урядовець', 'Pracownik administracji publicznej']);
-                wsData.push([180, 'Rozdział trzeci', 'Inne', 'obcokrajowiec', 'W naszej firmie pracuje wielu obcokrajowców.', 'іноземець', 'Osoba z innego kraju']);
+                // Lekcja trzeci - inne
+                wsData.push([178, 'Lekcja trzeci', 'Idiomy', 'coś mnie denerwuje', 'Ten hałas mnie denerwuje.', 'щось мене дратує', 'Wyrażenie irytacji']);
+                wsData.push([179, 'Lekcja trzeci', 'Idiomy', 'urzędnik', 'Urzędnik załatwił mi wszystkie dokumenty.', 'чиновник, урядовець', 'Pracownik administracji publicznej']);
+                wsData.push([180, 'Lekcja trzeci', 'Inne', 'obcokrajowiec', 'W naszej firmie pracuje wielu obcokrajowców.', 'іноземець', 'Osoba z innego kraju']);
                 
-                // Rozdział czwarty - praca i emigracja
-                wsData.push([181, 'Rozdział czwarty', 'Emigracja - życie', 'firma konsultingowa', 'Pracuję w dużej firmie konsultingowej.', 'консалтингова фірма', 'Firma świadcząca usługi doradcze']);
-                wsData.push([182, 'Rozdział czwarty', 'Emigracja - życie', 'widujemy się co tydzień', 'Widujemy się co tydzień na spotkaniach.', 'ми бачимося щотижня', 'Spotykać się regularnie']);
-                wsData.push([183, 'Rozdział czwarty', 'Emigracja - życie', 'mamy zamiar przeprowadzić się', 'Mamy zamiar przeprowadzić się do Warszawy.', 'ми маємо намір переїхати', 'Planować zmianę miejsca zamieszkania']);
-                wsData.push([184, 'Rozdział czwarty', 'Emigracja - życie', 'niechętnie wprowadzamy zmiany', 'Niechętnie wprowadzamy zmiany w firmie.', 'неохоче впроваджуємо зміни', 'Robić coś bez entuzjazmu']);
-                wsData.push([185, 'Rozdział czwarty', 'Emigracja - życie', 'specyfika kraju', 'Trzeba poznać specyfikę kraju przed wyjazdem.', 'специфіка країни', 'Charakterystyczne cechy danego miejsca']);
-                wsData.push([186, 'Rozdział czwarty', 'Emigracja - życie', 'ograniczony kontakt', 'Mam ograniczony kontakt z rodziną.', 'обмежений контакт', 'Rzadki, niewielki kontakt']);
-                wsData.push([187, 'Rozdział czwarty', 'Emigracja - życie', 'sytuacja polityczna', 'Sytuacja polityczna wpływa na decyzję o emigracji.', 'політична ситуація', 'Stan spraw politycznych w kraju']);
-                wsData.push([188, 'Rozdział czwarty', 'Emigracja - życie', 'nie dostałam się na uniwersytet', 'Niestety nie dostałam się na uniwersytet.', 'я не вступила до університету', 'Nie zdać egzaminów wstępnych']);
-                wsData.push([189, 'Rozdział czwarty', 'Emigracja - życie', 'zderzenie się z rzeczywistością', 'Emigracja to często zderzenie się z rzeczywistością.', 'зіткнення з реальністю', 'Konfrontacja z prawdziwym stanem rzeczy']);
-                wsData.push([190, 'Rozdział czwarty', 'Emigracja - życie', 'pozytywnie nastawieni do', 'Jesteśmy pozytywnie nastawieni do obcokrajowców.', 'позитивно налаштовані до', 'Mieć przychylne podejście']);
-                wsData.push([191, 'Rozdział czwarty', 'Emigracja - życie', 'nie mam wykształcenia', 'Niestety nie mam wykształcenia wyższego.', 'я не маю освіти', 'Brak edukacji formalnej']);
-                wsData.push([192, 'Rozdział czwarty', 'Emigracja - życie', 'nie zrezygnowałam z planów', 'Mimo trudności nie zrezygnowałam z planów.', 'я не відмовилася від планів', 'Nie porzucić zamierzeń']);
-                wsData.push([193, 'Rozdział czwarty', 'Emigracja - życie', 'trudno utrzymać się', 'Trudno utrzymać się z takiej pensji.', 'важко прожити', 'Ciężko przeżyć finansowo']);
-                wsData.push([194, 'Rozdział czwarty', 'Emigracja - życie', 'stawianie sobie realistycznych celów', 'Stawianie sobie realistycznych celów jest ważne.', 'постановка реалістичних цілей', 'Wyznaczanie osiągalnych zadań']);
-                wsData.push([195, 'Rozdział czwarty', 'Emigracja - życie', 'przedsiębiorczy', 'Jest bardzo przedsiębiorczy i pomysłowy.', 'підприємливий', 'Aktywny, inicjatywny w działaniu']);
-                wsData.push([196, 'Rozdział czwarty', 'Emigracja - życie', 'nieprzychylni', 'Byli nieprzychylni naszym propozycjom.', 'неприхильні', 'Niechętni, wrogo nastawieni']);
+                // Lekcja czwarty - praca i emigracja
+                wsData.push([181, 'Lekcja czwarty', 'Emigracja - życie', 'firma konsultingowa', 'Pracuję w dużej firmie konsultingowej.', 'консалтингова фірма', 'Firma świadcząca usługi doradcze']);
+                wsData.push([182, 'Lekcja czwarty', 'Emigracja - życie', 'widujemy się co tydzień', 'Widujemy się co tydzień na spotkaniach.', 'ми бачимося щотижня', 'Spotykać się regularnie']);
+                wsData.push([183, 'Lekcja czwarty', 'Emigracja - życie', 'mamy zamiar przeprowadzić się', 'Mamy zamiar przeprowadzić się do Warszawy.', 'ми маємо намір переїхати', 'Planować zmianę miejsca zamieszkania']);
+                wsData.push([184, 'Lekcja czwarty', 'Emigracja - życie', 'niechętnie wprowadzamy zmiany', 'Niechętnie wprowadzamy zmiany w firmie.', 'неохоче впроваджуємо зміни', 'Robić coś bez entuzjazmu']);
+                wsData.push([185, 'Lekcja czwarty', 'Emigracja - życie', 'specyfika kraju', 'Trzeba poznać specyfikę kraju przed wyjazdem.', 'специфіка країни', 'Charakterystyczne cechy danego miejsca']);
+                wsData.push([186, 'Lekcja czwarty', 'Emigracja - życie', 'ograniczony kontakt', 'Mam ograniczony kontakt z rodziną.', 'обмежений контакт', 'Rzadki, niewielki kontakt']);
+                wsData.push([187, 'Lekcja czwarty', 'Emigracja - życie', 'sytuacja polityczna', 'Sytuacja polityczna wpływa na decyzję o emigracji.', 'політична ситуація', 'Stan spraw politycznych w kraju']);
+                wsData.push([188, 'Lekcja czwarty', 'Emigracja - życie', 'nie dostałam się na uniwersytet', 'Niestety nie dostałam się na uniwersytet.', 'я не вступила до університету', 'Nie zdać egzaminów wstępnych']);
+                wsData.push([189, 'Lekcja czwarty', 'Emigracja - życie', 'zderzenie się z rzeczywistością', 'Emigracja to często zderzenie się z rzeczywistością.', 'зіткнення з реальністю', 'Konfrontacja z prawdziwym stanem rzeczy']);
+                wsData.push([190, 'Lekcja czwarty', 'Emigracja - życie', 'pozytywnie nastawieni do', 'Jesteśmy pozytywnie nastawieni do obcokrajowców.', 'позитивно налаштовані до', 'Mieć przychylne podejście']);
+                wsData.push([191, 'Lekcja czwarty', 'Emigracja - życie', 'nie mam wykształcenia', 'Niestety nie mam wykształcenia wyższego.', 'я не маю освіти', 'Brak edukacji formalnej']);
+                wsData.push([192, 'Lekcja czwarty', 'Emigracja - życie', 'nie zrezygnowałam z planów', 'Mimo trudności nie zrezygnowałam z planów.', 'я не відмовилася від планів', 'Nie porzucić zamierzeń']);
+                wsData.push([193, 'Lekcja czwarty', 'Emigracja - życie', 'trudno utrzymać się', 'Trudno utrzymać się z takiej pensji.', 'важко прожити', 'Ciężko przeżyć finansowo']);
+                wsData.push([194, 'Lekcja czwarty', 'Emigracja - życie', 'stawianie sobie realistycznych celów', 'Stawianie sobie realistycznych celów jest ważne.', 'постановка реалістичних цілей', 'Wyznaczanie osiągalnych zadań']);
+                wsData.push([195, 'Lekcja czwarty', 'Emigracja - życie', 'przedsiębiorczy', 'Jest bardzo przedsiębiorczy i pomysłowy.', 'підприємливий', 'Aktywny, inicjatywny w działaniu']);
+                wsData.push([196, 'Lekcja czwarty', 'Emigracja - życie', 'nieprzychylni', 'Byli nieprzychylni naszym propozycjom.', 'неприхильні', 'Niechętni, wrogo nastawieni']);
                 
-                // Rozdział czwarty - zwroty konwersacyjne
-                wsData.push([197, 'Rozdział czwarty', 'Emigracja - życie', 'to nie takie proste', 'Znaleźć pracę za granicą to nie takie proste.', 'це не так просто', 'Wyrażenie trudności zadania']);
-                wsData.push([198, 'Rozdział czwarty', 'Emigracja - życie', 'u nas jest inaczej', 'U nas w Polsce jest inaczej niż w Niemczech.', 'у нас інакше', 'Porównanie różnic kulturowych']);
-                wsData.push([199, 'Rozdział czwarty', 'Emigracja - życie', 'to trudno powiedzieć', 'Czy wrócę? To trudno powiedzieć.', 'важко сказати', 'Wyrażenie niepewności']);
-                wsData.push([200, 'Rozdział czwarty', 'Emigracja zarobkowa', 'u nas jest podobnie', 'U nas w rodzinie jest podobnie.', 'у нас подібно', 'Wskazanie podobieństwa']);
-                wsData.push([201, 'Rozdział czwarty', 'Emigracja zarobkowa', 'do niczego nie można porównać', 'Ta radość do niczego nie można porównać.', 'ні з чим не можна порівняти', 'Unikalne, wyjątkowe uczucie']);
+                // Lekcja czwarty - zwroty konwersacyjne
+                wsData.push([197, 'Lekcja czwarty', 'Emigracja - życie', 'to nie takie proste', 'Znaleźć pracę za granicą to nie takie proste.', 'це не так просто', 'Wyrażenie trudności zadania']);
+                wsData.push([198, 'Lekcja czwarty', 'Emigracja - życie', 'u nas jest inaczej', 'U nas w Polsce jest inaczej niż w Niemczech.', 'у нас інакше', 'Porównanie różnic kulturowych']);
+                wsData.push([199, 'Lekcja czwarty', 'Emigracja - życie', 'to trudno powiedzieć', 'Czy wrócę? To trudno powiedzieć.', 'важко сказати', 'Wyrażenie niepewności']);
+                wsData.push([200, 'Lekcja czwarty', 'Emigracja zarobkowa', 'u nas jest podobnie', 'U nas w rodzinie jest podobnie.', 'у нас подібно', 'Wskazanie podobieństwa']);
+                wsData.push([201, 'Lekcja czwarty', 'Emigracja zarobkowa', 'do niczego nie można porównać', 'Ta radość do niczego nie można porównać.', 'ні з чим не можна порівняти', 'Unikalne, wyjątkowe uczucie']);
                 
-                // Rozdział czwarty - emigracja zarobkowa
-                wsData.push([202, 'Rozdział czwarty', 'Emigracja zarobkowa', 'skala emigracji zarobkowej', 'Skala emigracji zarobkowej wzrasta.', 'масштаб трудової еміграції', 'Wielkość wyjazdów za pracą']);
-                wsData.push([203, 'Rozdział czwarty', 'Emigracja zarobkowa', 'powód do niepokoju', 'To jest poważny powód do niepokoju.', 'привід для занепокоєння', 'Przyczyna zmartwienia']);
-                wsData.push([204, 'Rozdział czwarty', 'Emigracja zarobkowa', 'rodacy', 'Spotkałem tam wielu rodaków.', 'співвітчизники', 'Osoby z tego samego kraju']);
-                wsData.push([205, 'Rozdział czwarty', 'Emigracja zarobkowa', 'poważna konkurencja', 'Na rynku pracy jest poważna konkurencja.', 'серйозна конкуренція', 'Duża rywalizacja']);
-                wsData.push([206, 'Rozdział czwarty', 'Emigracja zarobkowa', 'zachodnie rynki pracy', 'Polacy wyjeżdżają na zachodnie rynki pracy.', 'західні ринки праці', 'Rynki pracy w Europie Zachodniej']);
-                wsData.push([207, 'Rozdział czwarty', 'Emigracja zarobkowa', 'mobilność', 'Mobilność pracowników jest bardzo ważna.', 'мобільність', 'Gotowość do przemieszczania się']);
-                wsData.push([208, 'Rozdział czwarty', 'Emigracja zarobkowa', 'sprawiać, że', 'To sprawia, że czuję się szczęśliwy.', 'робити так, що', 'Powodować coś']);
-                wsData.push([209, 'Rozdział czwarty', 'Emigracja zarobkowa', 'oszacowanie', 'Według oszacowania, wyjechało 2 miliony osób.', 'оцінка', 'Przybliżona kalkulacja']);
-                wsData.push([210, 'Rozdział czwarty', 'Emigracja zarobkowa', 'ojczysty kraj', 'Tęsknię za ojczystym krajem.', 'рідна країна', 'Kraj pochodzenia']);
-                wsData.push([211, 'Rozdział czwarty', 'Emigracja zarobkowa', 'trudno się dziwić', 'Trudno się dziwić, że ludzie wyjeżdżają.', 'важко дивуватися', 'Wyrażenie zrozumienia sytuacji']);
-                wsData.push([212, 'Rozdział czwarty', 'Emigracja zarobkowa', 'uwagę zwraca', 'Uwagę zwraca duża liczba młodych emigrantów.', 'увагу привертає', 'Coś jest zauważalne']);
-                wsData.push([213, 'Rozdział czwarty', 'Emigracja zarobkowa', 'kryzys gospodarczy', 'Kryzys gospodarczy wpłynął na emigrację.', 'економічна криза', 'Trudna sytuacja ekonomiczna']);
-                wsData.push([214, 'Rozdział czwarty', 'Emigracja zarobkowa', 'bezrobocie', 'Bezrobocie jest głównym powodem emigracji.', 'безробіття', 'Brak pracy']);
-                wsData.push([215, 'Rozdział czwarty', 'Emigracja zarobkowa', 'posiadać miejsce zamieszkania', 'Muszę posiadać stałe miejsce zamieszkania.', 'мати місце проживання', 'Mieć oficjalny adres']);
-                wsData.push([216, 'Rozdział czwarty', 'Emigracja zarobkowa', 'wyspiarski kraj', 'Wielka Brytania to wyspiarski kraj.', 'острівна країна', 'Kraj położony na wyspie']);
-                wsData.push([217, 'Rozdział czwarty', 'Emigracja zarobkowa', 'skłoniło mnie', 'To skłoniło mnie do wyjazdu.', 'це спонукало мене', 'Zmotywowało, przekonało']);
-                wsData.push([218, 'Rozdział czwarty', 'Tożsamość i kultura', 'inna mentalność', 'Tam panuje zupełnie inna mentalność.', 'інший менталітет', 'Odmienny sposób myślenia']);
-                wsData.push([219, 'Rozdział czwarty', 'Tożsamość i kultura', 'zdobycie wiedzy', 'Wyjazd to szansa na zdobycie wiedzy.', 'здобуття знань', 'Nabycie umiejętności']);
+                // Lekcja czwarty - emigracja zarobkowa
+                wsData.push([202, 'Lekcja czwarty', 'Emigracja zarobkowa', 'skala emigracji zarobkowej', 'Skala emigracji zarobkowej wzrasta.', 'масштаб трудової еміграції', 'Wielkość wyjazdów za pracą']);
+                wsData.push([203, 'Lekcja czwarty', 'Emigracja zarobkowa', 'powód do niepokoju', 'To jest poważny powód do niepokoju.', 'привід для занепокоєння', 'Przyczyna zmartwienia']);
+                wsData.push([204, 'Lekcja czwarty', 'Emigracja zarobkowa', 'rodacy', 'Spotkałem tam wielu rodaków.', 'співвітчизники', 'Osoby z tego samego kraju']);
+                wsData.push([205, 'Lekcja czwarty', 'Emigracja zarobkowa', 'poważna konkurencja', 'Na rynku pracy jest poważna konkurencja.', 'серйозна конкуренція', 'Duża rywalizacja']);
+                wsData.push([206, 'Lekcja czwarty', 'Emigracja zarobkowa', 'zachodnie rynki pracy', 'Polacy wyjeżdżają na zachodnie rynki pracy.', 'західні ринки праці', 'Rynki pracy w Europie Zachodniej']);
+                wsData.push([207, 'Lekcja czwarty', 'Emigracja zarobkowa', 'mobilność', 'Mobilność pracowników jest bardzo ważna.', 'мобільність', 'Gotowość do przemieszczania się']);
+                wsData.push([208, 'Lekcja czwarty', 'Emigracja zarobkowa', 'sprawiać, że', 'To sprawia, że czuję się szczęśliwy.', 'робити так, що', 'Powodować coś']);
+                wsData.push([209, 'Lekcja czwarty', 'Emigracja zarobkowa', 'oszacowanie', 'Według oszacowania, wyjechało 2 miliony osób.', 'оцінка', 'Przybliżona kalkulacja']);
+                wsData.push([210, 'Lekcja czwarty', 'Emigracja zarobkowa', 'ojczysty kraj', 'Tęsknię za ojczystym krajem.', 'рідна країна', 'Kraj pochodzenia']);
+                wsData.push([211, 'Lekcja czwarty', 'Emigracja zarobkowa', 'trudno się dziwić', 'Trudno się dziwić, że ludzie wyjeżdżają.', 'важко дивуватися', 'Wyrażenie zrozumienia sytuacji']);
+                wsData.push([212, 'Lekcja czwarty', 'Emigracja zarobkowa', 'uwagę zwraca', 'Uwagę zwraca duża liczba młodych emigrantów.', 'увагу привертає', 'Coś jest zauważalne']);
+                wsData.push([213, 'Lekcja czwarty', 'Emigracja zarobkowa', 'kryzys gospodarczy', 'Kryzys gospodarczy wpłynął na emigrację.', 'економічна криза', 'Trudna sytuacja ekonomiczna']);
+                wsData.push([214, 'Lekcja czwarty', 'Emigracja zarobkowa', 'bezrobocie', 'Bezrobocie jest głównym powodem emigracji.', 'безробіття', 'Brak pracy']);
+                wsData.push([215, 'Lekcja czwarty', 'Emigracja zarobkowa', 'posiadać miejsce zamieszkania', 'Muszę posiadać stałe miejsce zamieszkania.', 'мати місце проживання', 'Mieć oficjalny adres']);
+                wsData.push([216, 'Lekcja czwarty', 'Emigracja zarobkowa', 'wyspiarski kraj', 'Wielka Brytania to wyspiarski kraj.', 'острівна країна', 'Kraj położony na wyspie']);
+                wsData.push([217, 'Lekcja czwarty', 'Emigracja zarobkowa', 'skłoniło mnie', 'To skłoniło mnie do wyjazdu.', 'це спонукало мене', 'Zmotywowało, przekonało']);
+                wsData.push([218, 'Lekcja czwarty', 'Tożsamość i kultura', 'inna mentalność', 'Tam panuje zupełnie inna mentalność.', 'інший менталітет', 'Odmienny sposób myślenia']);
+                wsData.push([219, 'Lekcja czwarty', 'Tożsamość i kultura', 'zdobycie wiedzy', 'Wyjazd to szansa na zdobycie wiedzy.', 'здобуття знань', 'Nabycie umiejętności']);
                 
-                // Rozdział czwarty - tożsamość i kultura
-                wsData.push([220, 'Rozdział czwarty', 'Tożsamość i kultura', 'niepodległość', 'Polska odzyskała niepodległość w 1918 roku.', 'незалежність', 'Suwerenność państwa']);
-                wsData.push([221, 'Rozdział czwarty', 'Tożsamość i kultura', 'powstanie', 'Powstanie warszawskie było w 1944 roku.', 'повстання', 'Zbrojny bunt przeciw władzy']);
-                wsData.push([222, 'Rozdział czwarty', 'Tożsamość i kultura', 'mniejszości', 'W Polsce żyją różne mniejszości narodowe.', 'меншини', 'Grupy etniczne w mniejszości']);
-                wsData.push([223, 'Rozdział czwarty', 'Tożsamość i kultura', 'wielokulturowość', 'Wielokulturowość to bogactwo społeczeństwa.', 'мультикультурність', 'Różnorodność kulturowa']);
-                wsData.push([224, 'Rozdział czwarty', 'Tożsamość i kultura', 'tożsamość', 'Tożsamość narodowa jest bardzo ważna.', 'ідентичність', 'Świadomość przynależności']);
-                wsData.push([225, 'Rozdział czwarty', 'Tożsamość i kultura', 'tradycja', 'Kultywujemy polskie tradycje.', 'традиція', 'Zwyczaje przekazywane z pokolenia']);
-                wsData.push([226, 'Rozdział czwarty', 'Tożsamość i kultura', 'tolerancja', 'Tolerancja jest podstawą współżycia.', 'толерантність', 'Akceptacja różnic']);
-                wsData.push([227, 'Rozdział czwarty', 'Tożsamość i kultura', 'akceptacja', 'Brak akceptacji prowadzi do konfliktów.', 'прийняття', 'Zgoda, uznanie czegoś']);
-                wsData.push([228, 'Rozdział czwarty', 'Tożsamość i kultura', 'integracja', 'Integracja imigrantów to długi proces.', 'інтеграція', 'Włączanie się do społeczeństwa']);
-                wsData.push([229, 'Rozdział czwarty', 'Tożsamość i kultura', 'gwarantuje równe traktowanie', 'Prawo gwarantuje równe traktowanie wszystkich.', 'гарантує рівне ставлення', 'Zapewnia sprawiedliwość']);
-                wsData.push([230, 'Rozdział czwarty', 'Integracja', 'niezależnie od pochodzenia', 'Każdy jest równy niezależnie od pochodzenia.', 'незалежно від походження', 'Bez względu na narodowość']);
-                wsData.push([231, 'Rozdział czwarty', 'Integracja', 'wykształcenie postaw', 'Szkoła służy wykształceniu postaw tolerancji.', 'формування ставлення', 'Kształtowanie sposobu myślenia']);
+                // Lekcja czwarty - tożsamość i kultura
+                wsData.push([220, 'Lekcja czwarty', 'Tożsamość i kultura', 'niepodległość', 'Polska odzyskała niepodległość w 1918 roku.', 'незалежність', 'Suwerenność państwa']);
+                wsData.push([221, 'Lekcja czwarty', 'Tożsamość i kultura', 'powstanie', 'Powstanie warszawskie było w 1944 roku.', 'повстання', 'Zbrojny bunt przeciw władzy']);
+                wsData.push([222, 'Lekcja czwarty', 'Tożsamość i kultura', 'mniejszości', 'W Polsce żyją różne mniejszości narodowe.', 'меншини', 'Grupy etniczne w mniejszości']);
+                wsData.push([223, 'Lekcja czwarty', 'Tożsamość i kultura', 'wielokulturowość', 'Wielokulturowość to bogactwo społeczeństwa.', 'мультикультурність', 'Różnorodność kulturowa']);
+                wsData.push([224, 'Lekcja czwarty', 'Tożsamość i kultura', 'tożsamość', 'Tożsamość narodowa jest bardzo ważna.', 'ідентичність', 'Świadomość przynależności']);
+                wsData.push([225, 'Lekcja czwarty', 'Tożsamość i kultura', 'tradycja', 'Kultywujemy polskie tradycje.', 'традиція', 'Zwyczaje przekazywane z pokolenia']);
+                wsData.push([226, 'Lekcja czwarty', 'Tożsamość i kultura', 'tolerancja', 'Tolerancja jest podstawą współżycia.', 'толерантність', 'Akceptacja różnic']);
+                wsData.push([227, 'Lekcja czwarty', 'Tożsamość i kultura', 'akceptacja', 'Brak akceptacji prowadzi do konfliktów.', 'прийняття', 'Zgoda, uznanie czegoś']);
+                wsData.push([228, 'Lekcja czwarty', 'Tożsamość i kultura', 'integracja', 'Integracja imigrantów to długi proces.', 'інтеграція', 'Włączanie się do społeczeństwa']);
+                wsData.push([229, 'Lekcja czwarty', 'Tożsamość i kultura', 'gwarantuje równe traktowanie', 'Prawo gwarantuje równe traktowanie wszystkich.', 'гарантує рівне ставлення', 'Zapewnia sprawiedliwość']);
+                wsData.push([230, 'Lekcja czwarty', 'Integracja', 'niezależnie od pochodzenia', 'Każdy jest równy niezależnie od pochodzenia.', 'незалежно від походження', 'Bez względu na narodowość']);
+                wsData.push([231, 'Lekcja czwarty', 'Integracja', 'wykształcenie postaw', 'Szkoła służy wykształceniu postaw tolerancji.', 'формування ставлення', 'Kształtowanie sposobu myślenia']);
                 
-                // Rozdział czwarty - problemy integracji
-                wsData.push([232, 'Rozdział czwarty', 'Integracja', 'katastrofalne', 'Skutki tej polityki są katastrofalne.', 'катастрофічні', 'Bardzo złe, tragiczne']);
-                wsData.push([233, 'Rozdział czwarty', 'Integracja', 'odrzucenie kultury', 'Odrzucenie własnej kultury to błąd.', 'відкидання культури', 'Wyparcie się tradycji']);
-                wsData.push([234, 'Rozdział czwarty', 'Integracja', 'uchodźcy', 'Uchodźcy potrzebują pomocy humanitarnej.', 'біженці', 'Osoby uciekające z kraju']);
-                wsData.push([235, 'Rozdział czwarty', 'Integracja', 'łamanie prawa', 'Łamanie prawa będzie karane.', 'порушення закону', 'Nieprzestrzeganie przepisów']);
-                wsData.push([236, 'Rozdział czwarty', 'Integracja', 'poczucie bezpieczeństwa', 'Poczucie bezpieczeństwa jest bardzo ważne.', 'почуття безпеки', 'Odczucie ochrony']);
-                wsData.push([237, 'Rozdział czwarty', 'Integracja', 'skrajne rozczarowanie', 'Przeżył skrajne rozczarowanie emigracją.', 'крайнє розчарування', 'Bardzo silny zawód']);
-                wsData.push([238, 'Rozdział czwarty', 'Integracja', 'dążenie do utrzymania zwyczajów', 'Dążenie do utrzymania zwyczajów jest naturalne.', 'прагнення зберегти звичаї', 'Chęć zachowania tradycji']);
-                wsData.push([239, 'Rozdział czwarty', 'Integracja', 'wykluczenie społeczne', 'Wykluczenie społeczne to poważny problem.', 'соціальне відчуження', 'Izolacja od społeczeństwa']);
-                wsData.push([240, 'Rozdział czwarty', 'Integracja', 'konflikt międzypokoleniowy', 'Konflikt międzypokoleniowy często występuje w rodzinach emigrantów.', 'міжпоколінний конфлікт', 'Spór między pokoleniami']);
-                wsData.push([241, 'Rozdział czwarty', 'Integracja', 'asymilacja', 'Asymilacja to proces dostosowania się.', 'асиміляція', 'Całkowite przystosowanie do kultury']);
-                wsData.push([242, 'Rozdział czwarty', 'Integracja', 'przystosowanie się', 'Przystosowanie się do nowego kraju zajmuje czas.', 'пристосування', 'Adaptacja do warunków']);
-                wsData.push([243, 'Rozdział czwarty', 'Integracja', 'identyfikacja', 'Identyfikacja z nowym krajem trwa latami.', 'ідентифікація', 'Utożsamianie się z czymś']);
-                wsData.push([244, 'Rozdział czwarty', 'Idiomy', 'wyrzeczenie się', 'Wyrzeczenie się własnej kultury jest trudne.', 'відмова від', 'Rezygnacja z czegoś']);
-                wsData.push([245, 'Rozdział czwarty', 'Idiomy', 'marginalizacja', 'Marginalizacja imigrantów to duży problem.', 'маргіналізація', 'Zepchnięcie na margines społeczeństwa']);
+                // Lekcja czwarty - problemy integracji
+                wsData.push([232, 'Lekcja czwarty', 'Integracja', 'katastrofalne', 'Skutki tej polityki są katastrofalne.', 'катастрофічні', 'Bardzo złe, tragiczne']);
+                wsData.push([233, 'Lekcja czwarty', 'Integracja', 'odrzucenie kultury', 'Odrzucenie własnej kultury to błąd.', 'відкидання культури', 'Wyparcie się tradycji']);
+                wsData.push([234, 'Lekcja czwarty', 'Integracja', 'uchodźcy', 'Uchodźcy potrzebują pomocy humanitarnej.', 'біженці', 'Osoby uciekające z kraju']);
+                wsData.push([235, 'Lekcja czwarty', 'Integracja', 'łamanie prawa', 'Łamanie prawa będzie karane.', 'порушення закону', 'Nieprzestrzeganie przepisów']);
+                wsData.push([236, 'Lekcja czwarty', 'Integracja', 'poczucie bezpieczeństwa', 'Poczucie bezpieczeństwa jest bardzo ważne.', 'почуття безпеки', 'Odczucie ochrony']);
+                wsData.push([237, 'Lekcja czwarty', 'Integracja', 'skrajne rozczarowanie', 'Przeżył skrajne rozczarowanie emigracją.', 'крайнє розчарування', 'Bardzo silny zawód']);
+                wsData.push([238, 'Lekcja czwarty', 'Integracja', 'dążenie do utrzymania zwyczajów', 'Dążenie do utrzymania zwyczajów jest naturalne.', 'прагнення зберегти звичаї', 'Chęć zachowania tradycji']);
+                wsData.push([239, 'Lekcja czwarty', 'Integracja', 'wykluczenie społeczne', 'Wykluczenie społeczne to poważny problem.', 'соціальне відчуження', 'Izolacja od społeczeństwa']);
+                wsData.push([240, 'Lekcja czwarty', 'Integracja', 'konflikt międzypokoleniowy', 'Konflikt międzypokoleniowy często występuje w rodzinach emigrantów.', 'міжпоколінний конфлікт', 'Spór między pokoleniami']);
+                wsData.push([241, 'Lekcja czwarty', 'Integracja', 'asymilacja', 'Asymilacja to proces dostosowania się.', 'асиміляція', 'Całkowite przystosowanie do kultury']);
+                wsData.push([242, 'Lekcja czwarty', 'Integracja', 'przystosowanie się', 'Przystosowanie się do nowego kraju zajmuje czas.', 'пристосування', 'Adaptacja do warunków']);
+                wsData.push([243, 'Lekcja czwarty', 'Integracja', 'identyfikacja', 'Identyfikacja z nowym krajem trwa latami.', 'ідентифікація', 'Utożsamianie się z czymś']);
+                wsData.push([244, 'Lekcja czwarty', 'Idiomy', 'wyrzeczenie się', 'Wyrzeczenie się własnej kultury jest trudne.', 'відмова від', 'Rezygnacja z czegoś']);
+                wsData.push([245, 'Lekcja czwarty', 'Idiomy', 'marginalizacja', 'Marginalizacja imigrantów to duży problem.', 'маргіналізація', 'Zepchnięcie na margines społeczeństwa']);
                 
-                // Rozdział czwarty - idiomy
-                wsData.push([246, 'Rozdział czwarty', 'Idiomy', 'upadłeś na głowę', 'Chcesz tam jechać? Upadłeś na głowę!', 'ти з глузду з\'їхав', 'Zwariowałeś (idiom)']);
-                wsData.push([247, 'Rozdział czwarty', 'Idiomy', 'to się nie mieści w głowie', 'To się nie mieści w głowie, jak tak można!', 'це не вкладається в голові', 'Trudno uwierzyć, absurdalne']);
-                wsData.push([248, 'Rozdział czwarty', 'Idiomy', 'przyjmą cię tam z otwartymi ramionami', 'Przyjmą cię tam z otwartymi ramionami.', 'приймуть тебе з відкритими обіймами', 'Przyjąć bardzo ciepło']);
-                wsData.push([249, 'Rozdział czwarty', 'Idiomy', 'stanę na własnych nogach', 'Chcę stanąć na własnych nogach.', 'стану на власні ноги', 'Osiągnąć samodzielność']);
+                // Lekcja czwarty - idiomy
+                wsData.push([246, 'Lekcja czwarty', 'Idiomy', 'upadłeś na głowę', 'Chcesz tam jechać? Upadłeś na głowę!', 'ти з глузду з\'їхав', 'Zwariowałeś (idiom)']);
+                wsData.push([247, 'Lekcja czwarty', 'Idiomy', 'to się nie mieści w głowie', 'To się nie mieści w głowie, jak tak można!', 'це не вкладається в голові', 'Trudno uwierzyć, absurdalne']);
+                wsData.push([248, 'Lekcja czwarty', 'Idiomy', 'przyjmą cię tam z otwartymi ramionami', 'Przyjmą cię tam z otwartymi ramionami.', 'приймуть тебе з відкритими обіймами', 'Przyjąć bardzo ciepło']);
+                wsData.push([249, 'Lekcja czwarty', 'Idiomy', 'stanę na własnych nogach', 'Chcę stanąć na własnych nogach.', 'стану на власні ноги', 'Osiągnąć samodzielność']);
             }
             
             const ws = XLSX.utils.aoa_to_sheet(wsData);
             
             ws['!cols'] = [
                 {wch: 8},   // ID
-                {wch: 30},  // Rozdział
+                {wch: 30},  // Lekcja
                 {wch: 25},  // Kategoria
                 {wch: 30},  // Słowo (Polski)
                 {wch: 45},  // Przykład (Polski)
